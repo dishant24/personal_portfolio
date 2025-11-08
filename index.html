@@ -159,8 +159,9 @@
 
 						// Create an array of typing text
 						const typingTexts = [
-						'AI Engineer  ',
-						'Data Scientist  '
+						'Biomedical AI Engineer  ',
+						'Biomedical Data Scientist  ',
+							'Medical Reseach Sciencetist'
 						];
 
 						// Create a function to display the typing animation for a given text
@@ -169,14 +170,14 @@
 						for (let i = 0; i < text.length; i++) {
 							setTimeout(() => {
 							typingAnimationElement.textContent += text[i];
-							}, i * 200); // Increase the delay to slow down the typing animation
+							}, i * 250); // Increase the delay to slow down the typing animation
 						}
 
 						// Once the animation is complete, reset the text and start over
 						setTimeout(() => {
 							typingAnimationElement.textContent = '';
 							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-						}, text.length * 200);
+						}, text.length * 250);
 						}
 
 						// Start the typing animation loop
@@ -187,7 +188,7 @@
 						<br>
 						<br>
 			            <h2>AI/ML Engineer</h2>
-						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
+						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 4 years of experience</h2> -->
 						<!-- <br> -->
 			            <p><a href="https://github.com/dishant24" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
 		            </div>
@@ -291,7 +292,7 @@
 						<div class="counter-wrap ftco-animate d-flex mt-md-3">
 							<div class="text">
 								<p class="mb-4">
-									<span class="number" data-number="30">0</span> <span>+</span>
+									<span class="number" data-number="10">0</span> <span>+</span>
 									<span>&nbsp; Projects completed</span>
 								</p>
 								<p><a href="https://www.linkedin.com/in/dishant-sutariya/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
@@ -359,8 +360,6 @@ Transformers, UNet, SimpleITK, DVC, Docker, and MLflow for reliable healthcare A
 					</div>
 
 
-		<br>
-		<br>
 
 		<div class="row">
 			<h1 class="big-4">Education</h1>
@@ -554,7 +553,7 @@ Transformers, UNet, SimpleITK, DVC, Docker, and MLflow for reliable healthcare A
 			<br>
 			<div class="row justify-content-center">
 				<div class="col-md-7 ftco-animate text-center">
-					<h2>Have a<span> Question?  </span> <a href="https://forms.gle/uLaTShUKXraAvHJ77" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
+					<h2>Have a<span> Question?  </span> <a href="https://forms.gle/9nWHNKNREm1wcbbC7" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
 				</div>
 			</div>
 				<br>
