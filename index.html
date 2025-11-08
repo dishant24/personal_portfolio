@@ -1,467 +1,608 @@
-    <div class="collapse navbar-collapse" id="ftco-nav">
-      <ul class="navbar-nav nav ml-auto">
-        <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-        <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-        <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
-        <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
-        <li class="nav-item"><a href="#achievements-section" class="nav-link"><span>Achievements</span></a></li>
-        <li class="nav-item"><a href="#publications-section" class="nav-link"><span>Publications</span></a></li>
-        <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dishant Sutariya Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-<!-- Hero -->
-<section id="home-section" class="hero">
-  <div class="home-slider owl-carousel">
-    <div class="slider-item">
-      <div class="overlay"></div>
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+<style>
+
+/*======================================
+//--//-->   ABOUT
+======================================*/
+
+.about-mf .box-shadow-full {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.about-mf .about-img {
+  margin-bottom: 2rem;
+}
+
+.about-mf .about-img img {
+  margin-left: 10px;
+}
+
+
+.skill-mf .progress {
+  /* background-color: #cde1f8; */
+  margin: .5rem 0 1.2rem 0;
+  border-radius: 0;
+  height: .7rem;
+}
+
+.skill-mf .progress .progress-bar {
+  height: .7rem;
+  background-color: #ffbd39;
+}
+
+
+/* Animation styles */
+#typing-animation {
+  position: relative;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(20, end) infinite;
+}
+
+#typing-animation:before {
+  content: "";
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #ccc;
+  animation: typing-cursor 0.5s ease-in-out infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes typing-cursor {
+  from {
+    width: 5px;
+  }
+  to {
+    width: 0;
+  }
+}
+
+
+/* project image zoom effect */
+
+.zoom-effect {
+  overflow: hidden;
+  transition: transform 0.3s ease-out;
+}
+
+.zoom-effect:hover {
+  transform: scale(1.1);
+}
+
+
+</style>
+
+
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+	  
+	  
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">Dishant Sutariya</a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
+	          <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
+	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  <section id="home-section" class="hero">
+		  <div class="home-slider  owl-carousel">
+	       <div class="slider-item ">
+	      	<div class="overlay"></div>
+	         <div class="container">
+	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
+	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/wall-portfolio-Photoroom.png);">
+	          	 <div class="overlay"></div>
+	          	</div>
+		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+		          	<div class="text">
+		          		<span class="subheading">Hello!</span>
+			            <h1 class="mb-4 mt-3">I'm <span>Dishant Sutariya</span></h1>
+
+						<!-- Element to contain animated typing -->
+						<span id="typing-animation"></span>
+
+						<script>
+
+						// Initialize the typing animation
+						const typingAnimationElement = document.getElementById('typing-animation');
+
+						// Create an array of typing text
+						const typingTexts = [
+						'AI Engineer  ',
+						'Data Scientist  '
+						];
+
+						// Create a function to display the typing animation for a given text
+						function playTypingAnimation(text) {
+						// Loop through each character and add it to the element
+						for (let i = 0; i < text.length; i++) {
+							setTimeout(() => {
+							typingAnimationElement.textContent += text[i];
+							}, i * 200); // Increase the delay to slow down the typing animation
+						}
+
+						// Once the animation is complete, reset the text and start over
+						setTimeout(() => {
+							typingAnimationElement.textContent = '';
+							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
+						}, text.length * 200);
+						}
+
+						// Start the typing animation loop
+						playTypingAnimation(typingTexts[0]);
+
+						</script>
+
+						<br>
+						<br>
+			            <h2>AI/ML Engineer</h2>
+						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
+						<!-- <br> -->
+			            <p><a href="https://github.com/dishant24" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
+		            </div>
+		          </div>
+	        	</div>
+	        </div>
+	      </div>
+		</div>
+    </section>
+
+
+
+    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
+    	<div class="container">
+			<div class="row">
+				<div class="row d-flex align-items-stretch">
+				<!-- <div class="row d-flex"> -->
+					<div class="col-md-6 col-lg-5 d-flex">
+						<div class="img-about img d-flex align-items-stretch">
+							<div class="overlay">
+								<div class="row">
+									<div class="col-sm-6 col-md-5">
+									  <div class="about-img">
+										<img src="images\profile_pic.jpg" class="img-fluid rounded b-shadow-a" alt="">
+									  </div>
+									</div>
+									<!-- Details next to profile image -->
+									<div class="col-sm-6 col-md-7">
+									  <div class="about-info">
+										<p><span class="title-s">Name: </span> <span>Dishant Sutairya</span></p>
+										<p><span class="title-s">Job Role: </span> <span>Biomedical AI Engineer</span></p>
+										<p><span class="title-s">Address: </span> <span>Bremen, Germany</span></p>
+									  </div>
+									</div>
+								  </div>
+
+								<div class="skill-mf">
+									<p class="title-s">Skills</p>
+									
+									<span>Python</span> <span class="pull-right">90%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									
+									<span>Data Processing & Visualization</span> <span class="pull-right">90%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									
+									<span>Model Deployment</span> <span class="pull-right">60%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									
+									<span>Machine Learning</span> <span class="pull-right">80%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									<span>Deep Learning</span> <span class="pull-right">80%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									<span>Generative AI</span> <span class="pull-right">80%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
+						<div class="row justify-content-start pb-3">
+							<div class="col-md-12 heading-section ftco-animate">
+								
+								<h1 class="big">About</h1>
+								<h2 class="mb-4">About Me</h2>
+								
+								<p>Curious mind blending AI and healthcare—turning medical images into reliable, bias‑aware intelligence for real‑world impact.</p>
+								<ul class="about-info mt-4 px-md-0 px-2">
+									<li class="d-flex"><span>Profile:</span> <span>AI &amp; Machine learning</span></li>
+									<li class="d-flex"><span>Domain:</span> <span>Healthcare &amp; Medical Imaging </span></li>
+									<li class="d-flex"><span>Education:</span> <span>Masters in Medical Engineering</span></li>
+									<li class="d-flex"><span>Language:</span> <span>English,German,Hindi, Gujarati</span></li>
+									<li class="d-flex"><span>Other Skills:</span> <span>Excel, Git, Docker, DVC, MLOPS</span></li>
+									<li class="d-flex"><span>Frameworks:</span> <span>Pytorch, Tensorflow, ViT(Vision Transformer)</span></li>
+									<li class="d-flex"><span>AI/ML:</span> <span>Machine Learning, Deep Learning, Generative Image AI</span></li>
+									<li class="d-flex"><span>Interest:</span> <span>Traveling, Gym, Sport</span></li>
+									
+								</ul>
+							</div>
+						</div>
+
+
+						<div class="counter-wrap ftco-animate d-flex mt-md-3">
+							<div class="text">
+								<p class="mb-4">
+									<span class="number" data-number="30">0</span> <span>+</span>
+									<span>&nbsp; Projects completed</span>
+								</p>
+								<p><a href="https://www.linkedin.com/in/dishant-sutariya/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </section>
+
+
+
+	
+    <section class="ftco-section ftco-no-pb" id="resume-section">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-10 heading-section text-center ftco-animate">
+          	<h1 class="big big-2">Resume</h1>
+            <h2 class="mb-4">Resume</h2>
+            <p>Innovative AI and Deep Learning specialist with a Master’s degree in Medical Image and Data Processing from FAU Erlangen-Nuremberg. Expertise in developing end-to-end deep learning solutions for medical imaging and healthcare, from prediction, segmentation to generative diffusion models, with a proven focus on model validation and algorithmic fairness. Experienced in PyTorch,
+Transformers, UNet, SimpleITK, DVC, Docker, and MLflow for reliable healthcare AI delivery </div>
+        </div>
+
+		<div class="row">
+			<h1 class="big-4">Experience</h1>
+			<div class="underline"></div>
+		</div>
+		<br>
+		
+		<div class="row">
+				<div class="col-md-6">
+					<div class="resume-wrap ftco-animate">
+						<span class="date">Decemebr 2024-August 2025</span>
+						<h2>Data Analyst</h2>
+						<span class="position">Fraunhofer Institute for Digital Medicine MEVIS</span>
+						<p class="mt-4">Fraunhofer MEVIS develops real-world medical software solutions for image-supported early detection, diagnosis, and therapy.
+							<ul>
+								<li>Engineered a Python-based statistical toolkit to assess ML model fairness and performance rigorously.</li>
+								<li>Implemented advanced validation metrics, including AUROC, Precision-Recall Gain (PRG), and uncertainty estimation with multiple comparison corrections, to identify and quantify performance disparities.</li>
+								<li>Developed interactive Plotly dashboards, enabling faster bias reviews and saving 8 hours/week of manual analysis.</li>
+								<li>Coordinated a MICCAI 2025 submission timeline across authors, versioned experiments in DVC, and de-risked deadlines with a validation checklist resulting in a clean, reproducible paper package on first submission.</li>
+							</ul>
+						</p>
+					</div>
+
+				</div>
+
+				<div class="col-md-6">
+					<div class="resume-wrap ftco-animate">
+						<span class="date">August 2021- July 2022</span>
+						<h2>Machine learning Intern </h2>
+						<span class="position">Maruti Techlabs</span>
+						<p class="mt-4">Maruti Techlabs is a custom software product development company that leverages next-generation technologies to offer software engineering, mobile and web development, DevOps, artificial intelligence, cloud-native development, quality engineering, staff augmentation, and more services.
+							<ul>
+								<li>Resolved critical class imbalance in the vehicle insurance dataset by implementing SMOTE, which improved the F1-score by 10% and reduced false negatives by 8%.</li>
+								<li>Performed exploratory data analysis and feature importance evaluation on a vehicle insurance dataset of 50,000+ records, identifying Vehicle Damage and Policy Type as top predictors, improving model accuracy by 12 %.</li>
+								<li>Conducted a comparative analysis of Logistic Regression, Random Forest, and XGBoost, identifying XGBoost as the optimal model archived 92% accuracy.</li>
+								<li>Translated business needs into technical requirements by balancing priorities and resource constraints effectively.</li>
+								<li>Collaborated with UI/UX teams using Figma for iterative design improvements.</li>
+								<li>Boosted overall model accuracy by 6% through systematic hyperparameter tuning and 10-fold cross-validation.</li>
+			
+							</ul>
+						</p>
+					</div>
+
+
+		<br>
+		<br>
+
+		<div class="row">
+			<h1 class="big-4">Education</h1>
+			<div class="underline"></div>
+		</div>
+		<br>
+		
+			<div class="row">
+    			<div class="col-md-6">
+    				<div class="resume-wrap ftco-animate">
+    					<span class="date">October 2022 - August 2025</span>
+    					<h2>Masters in Medical Engineering</h2>
+						<h3>Specialization: Medical Image and Data Processing</h3>
+    					<span class="position">Friedrich-Alexander-Universität</span>
+    				</div>
+    			</div>
+
+    			<div class="col-md-6">
+    				<div class="resume-wrap ftco-animate">
+    					<span class="date">July 2017 - June 2021</span>
+    					<h2>Bachelors in Computer Engineering</h2>
+    					<span class="position">Gujarat Technological University</span>
+    				</div>
+				</div>
+    		</div>
+
+    		<div class="row justify-content-center mt-5">
+    			<div class="col-md-6 text-center ftco-animate">
+    				<p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+   
+
+    <section class="ftco-section" id="project-section">
       <div class="container">
-        <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-          <div class="one-third js-fullheight order-md-last img" style="background-image:url(images/wall-portfolio-Photoroom.png);">
-            <div class="overlay"></div>
-          </div>
-          <div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <div class="text">
-              <span class="subheading">Hello!</span>
-              <h1 class="mb-4 mt-3">I'm <span>Dishant Sutariya</span></h1>
-
-              <!-- Typing -->
-              <span id="typing-animation"></span>
-              <script>
-                const typingAnimationElement = document.getElementById('typing-animation');
-                const typingTexts = ['AI Engineer  ', 'Data Scientist  '];
-                function playTypingAnimation(text) {
-                  for (let i = 0; i < text.length; i++) {
-                    setTimeout(() => { typingAnimationElement.textContent += text[i]; }, i * 200);
-                  }
-                  setTimeout(() => {
-                    typingAnimationElement.textContent = '';
-                    playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-                  }, text.length * 200);
-                }
-                playTypingAnimation(typingTexts);
-              </script>
-
-              <br><br>
-              <h2>AI/ML Engineer</h2>
-              <p><a href="https://github.com/dishant24" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-            </div>
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Projects</h1>
+            <h2 class="mb-4">Projects</h2>
+            <p>Below are the projects based on AI, ML, Python with deployment.</p>
+			<p>For more projects check out my github.
+			</p>
           </div>
         </div>
-      </div>
-    </div><!-- slider-item -->
-  </div>
-</section>
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/dishant24/pcct_project" class="block-20 zoom-effect";">
+              </a>
+              <div class="text mt-3 float-right d-block">
 
-<!-- About -->
-<section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-  <div class="container">
-    <div class="row d-flex align-items-stretch">
-      <div class="col-md-6 col-lg-5 d-flex">
-        <div class="img-about img d-flex align-items-stretch">
-          <div class="overlay">
-            <div class="row">
-              <div class="col-sm-6 col-md-5">
-                <div class="about-img">
-                  <img src="images/profile_pic.jpg" class="img-fluid rounded b-shadow-a" alt="Profile picture of Dishant Sutariya">
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-7">
-                <div class="about-info">
-                  <p><span class="title-s">Name: </span> <span>Dishant Sutariya</span></p>
-                  <p><span class="title-s">Job Role: </span> <span>Biomedical AI Engineer</span></p>
-                  <p><span class="title-s">Address: </span> <span>Bremen, Germany</span></p>
-                </div>
+                <h3 class="heading"><a href="https://github.com/dishant24/pcct_project">PCCT Image Generation</a></h3>
+                <p>Generate different type of energy level images of Photon Counting Computed Tomography.</p>
               </div>
             </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/dishant24/End-to-End-Wine-Quality-Prediction" class="block-20 zoom-effect";">
+              </a>
+              <div class="text mt-3 float-right d-block">
 
-            <div class="skill-mf">
-              <p class="title-s">Skills</p>
-              <span>Python</span> <span class="pull-right">90%</span>
-              <div class="progress"><div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div></div>
+                <h3 class="heading"><a href="https://github.com/dishant24/End-to-End-Wine-Quality-Prediction">Wine Quality Prediction</a></h3>
+                <p>Built and deploy end-to-end machine learning wine quality checking project with Amazon AWS and Docker service.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry">
+              <a href="https://github.com/dishant24/cxr-fair-ai" class="block-20 zoom-effect";">
+              </a>
+              <div class="text mt-3 float-right d-block">
 
-              <span>Data Processing & Visualization</span> <span class="pull-right">90%</span>
-              <div class="progress"><div class="progress-bar" role="progressbar" style="width: 90%"></div></div>
-
-              <span>Model Deployment</span> <span class="pull-right">60%</span>
-              <div class="progress"><div class="progress-bar" role="progressbar" style="width: 60%"></div></div>
-
-              <span>Machine Learning</span> <span class="pull-right">80%</span>
-              <div class="progress"><div class="progress-bar" role="progressbar" style="width: 80%"></div></div>
-
-              <span>Deep Learning</span> <span class="pull-right">80%</span>
-              <div class="progress"><div class="progress-bar" role="progressbar" style="width: 80%"></div></div>
-
-              <span>Generative AI</span> <span class="pull-right">80%</span>
-              <div class="progress"><div class="progress-bar" role="progressbar" style="width: 80%"></div></div>
+                <h3 class="heading"><a href="https://github.com/dishant24/cxr-fair-ai">Fair Chest X-ray diagnostic AI model</a></h3>
+                <p>This project focuses on improving the fairness and robustness of AI models used in medical chest X-ray (CXR) diagnosis. The primary objective is mitigate racial demographic biases that can arise in deep learning models trained on medical imaging CXR datasets.</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-        <div class="row justify-content-start pb-3">
-          <div class="col-md-12 heading-section ftco-animate">
-            <h1 class="big">About</h1>
-            <h2 class="mb-4">About Me</h2>
-            <p>Curious mind blending AI and healthcare—turning medical images into reliable, bias‑aware intelligence for real‑world impact.</p>
-            <ul class="about-info mt-4 px-md-0 px-2 list-unstyled">
-              <li class="d-flex"><span class="title-s">Profile:</span> <span>AI &amp; Machine Learning</span></li>
-              <li class="d-flex"><span class="title-s">Domain:</span> <span>Healthcare &amp; Medical Imaging</span></li>
-              <li class="d-flex"><span class="title-s">Education:</span> <span>Master’s in Medical Engineering</span></li>
-              <li class="d-flex"><span class="title-s">Languages:</span> <span>English, German, Hindi, Gujarati</span></li>
-              <li class="d-flex"><span class="title-s">Other Skills:</span> <span>Excel, Git, Docker, DVC, MLOps</span></li>
-              <li class="d-flex"><span class="title-s">Frameworks:</span> <span>PyTorch, TensorFlow, ViT</span></li>
-              <li class="d-flex"><span class="title-s">AI/ML:</span> <span>ML, DL, Generative Image AI</span></li>
-              <li class="d-flex"><span class="title-s">Interests:</span> <span>Traveling, Gym, Sport</span></li>
-            </ul>
-          </div>
-        </div>
+    </section>
 
-        <div class="counter-wrap ftco-animate d-flex mt-md-3">
-          <div class="text">
-            <p class="mb-4">
-              <span class="number" data-number="30">0</span> <span>+</span>
-              <span>&nbsp; Projects completed</span>
-            </p>
-            <p><a href="https://www.linkedin.com/in/dishant-sutariya/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
-          </div>
-        </div>
-      </div>
-    </div><!-- row -->
-  </div>
-</section>
-
-<!-- Resume -->
-<section class="ftco-section" id="resume-section">
-  <div class="container">
-    <div class="row justify-content-center pb-5">
-      <div class="col-md-10 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Resume</h1>
-        <h2 class="mb-4">Resume</h2>
-        <p>Innovative AI and Deep Learning specialist with a Master’s degree in Medical Image and Data Processing from FAU Erlangen-Nuremberg, delivering end-to-end solutions across prediction, segmentation, and diffusion models with a strong focus on validation and algorithmic fairness using PyTorch, Transformers, UNet, SimpleITK, DVC, Docker, and MLflow.</p>
-      </div>
-    </div>
-
-    <!-- Experience -->
-    <div class="row">
-      <div class="col-12">
-        <h1 class="big-4">Experience</h1>
-        <div class="underline"></div>
-      </div>
-    </div>
-    <div class="row section-spacer">
-      <div class="col-md-6">
-        <div class="resume-wrap ftco-animate">
-          <span class="date">December 2024 – September 2025</span>
-          <h2>Working Student -  Data Analyst</h2>
-          <span class="position">Fraunhofer Institute for Digital Medicine MEVIS</span>
-          <p class="mt-3">Fraunhofer MEVIS develops medical software for image-supported early detection, diagnosis, and therapy.</p>
-          <ul class="mt-3">
-            <li>Engineered a Python-based statistical toolkit to assess ML model fairness and performance rigorously.</li>
-            <li>Implemented AUROC, Precision–Recall Gain, uncertainty estimation with multiple comparison corrections to quantify disparities.</li>
-            <li>Built interactive Plotly dashboards, reducing manual bias review by 8 hours/week.</li>
-            <li>Coordinated a MICCAI 2025 submission with DVC-versioned experiments and a reproducible validation checklist.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="resume-wrap ftco-animate">
-          <span class="date">August 2021 – July 2022</span>
-          <h2>Machine Learning Intern</h2>
-          <span class="position">Maruti Techlabs</span>
-          <p class="mt-3">Custom software firm leveraging next-gen technologies for AI, cloud-native, and product engineering.</p>
-          <ul class="mt-3">
-            <li>Resolved severe class imbalance via SMOTE, improving F1 by 10% and reducing false negatives by 8%.</li>
-            <li>EDA on 50k+ vehicle insurance records; identified key predictors, improving accuracy by 12%.</li>
-            <li>Benchmarked LR, RF, XGBoost; selected XGBoost achieving 92% accuracy.</li>
-            <li>Boosted overall accuracy by 6% via systematic tuning and 10-fold CV.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Education (alignment corrected) -->
-    <div class="row section-spacer" id="education">
-      <div class="col-12">
-        <h1 class="big-4">Education</h1>
-        <div class="underline"></div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="resume-wrap ftco-animate">
-          <span class="date">October 2022 – August 2025</span>
-          <h2>Master of Medical Engineering</h2>
-          <h3 class="mb-1">Specialization: Medical Image and Data Processing</h3>
-          <span class="position">Friedrich-Alexander-Universität Erlangen–Nürnberg</span>
-          <p class="mt-2 mb-0">GPA: 2.2/5.0</p>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="resume-wrap ftco-animate">
-          <span class="date">July 2017 – June 2021</span>
-          <h2>Bachelor of Engineering</h2>
-          <h3 class="mb-1">Computer Engineering</h3>
-          <span class="position">Gujarat Technological University</span>
-          <p class="mt-2 mb-0">GPA: 1.7/5.0</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- CV Button -->
-    <div class="row justify-content-center mt-4">
-      <div class="col-md-6 text-center ftco-animate">
-        <p><a href="resume.pdf" class="btn btn-primary py-4 px-5">Download CV</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Projects -->
-<section class="ftco-section" id="project-section">
-  <div class="container">
-    <div class="row justify-content-center mb-5 pb-5">
-      <div class="col-md-7 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Projects</h1>
-        <h2 class="mb-4">Projects</h2>
-        <p>Below are the projects based on AI, ML, Python with deployment.</p>
-        <p>For more projects check out my GitHub.</p>
-      </div>
-    </div>
-
-    <div class="row d-flex">
-      <div class="col-md-4 d-flex ftco-animate">
-        <div class="blog-entry justify-content-end">
-          <a href="https://github.com/dishant24/pcct_project" class="block-20 zoom-effect" aria-label="PCCT Image Generation"></a>
-          <div class="text mt-3 float-right d-block">
-            <h3 class="heading"><a href="https://github.com/dishant24/pcct_project">PCCT Image Generation</a></h3>
-            <p>Generate different energy-level image representations for Photon Counting CT.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 d-flex ftco-animate">
-        <div class="blog-entry justify-content-end">
-          <a href="https://github.com/dishant24/End-to-End-Wine-Quality-Prediction" class="block-20 zoom-effect" aria-label="Wine Quality Prediction"></a>
-          <div class="text mt-3 float-right d-block">
-            <h3 class="heading"><a href="https://github.com/dishant24/End-to-End-Wine-Quality-Prediction">Wine Quality Prediction</a></h3>
-            <p>End‑to‑end ML with AWS and Docker for wine quality classification.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 d-flex ftco-animate">
-        <div class="blog-entry">
-          <a href="https://github.com/dishant24/cxr-fair-ai" class="block-20 zoom-effect" aria-label="Fair Chest X-ray diagnostic AI"></a>
-          <div class="text mt-3 float-right d-block">
-            <h3 class="heading"><a href="https://github.com/dishant24/cxr-fair-ai">Fair Chest X-ray Diagnostic AI</a></h3>
-            <p>Mitigates racial demographic bias in deep learning for CXR diagnosis.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-      <div class="row justify-content-center">
-        <div class="col-md-7 ftco-animate text-center">
-          <h2>More projects on <span>GitHub</span></h2>
-          <div class="heading">
-            <h4>Designing intelligent AI & ML solutions to solve business and healthcare problems and uncover actionable insights</h4>
-            <br>
-            <p><a href="https://github.com/dishant24" class="btn btn-primary py-3 px-5">GitHub</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!-- container -->
-</section>
-
-<!-- Achievements -->
-<section class="ftco-section" id="achievements-section">
-  <div class="container">
-    <div class="row justify-content-center mb-4">
-      <div class="col-md-8 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Achievements</h1>
-        <h2 class="mb-4">Awards & Highlights</h2>
-        <p>Selected recognitions in medical imaging AI, competitions, and research workshops.</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="ach-item">
-          <h4 class="mb-1">Poster Award, FAIMI Workshop at MICCAI 2025 <span class="badge-tag">Research</span></h4>
-          <p class="mb-1"><em>“meval: A Statistical Toolbox for Fine‑Grained Model Performance Analysis”</em> (Authors: Dishantkumar Sutariya, Eike Petersen)</p>
-          <ul class="mb-0">
-            <li>Recognized for rigorous analysis workflows enabling bias and fairness assessment in medical imaging models.</li>
-          </ul>
-        </div>
-
-        <div class="ach-item">
-          <h4 class="mb-1">Siemens Healthineers D&A Summer Challenge — 1st Place <span class="badge-tag">Hackathon</span></h4>
-          <p class="mb-1">Forchheim, Germany — September 2023</p>
-          <ul class="mb-0">
-            <li>Developed an image registration solution aligning CXRs to a standard lung for lesion monitoring.</li>
-            <li>Collaborated across roles to design, implement, and present the winning approach.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div><!-- container -->
-</section>
-
-<!-- Publications -->
-<section class="ftco-section" id="publications-section">
-  <div class="container">
-    <div class="row justify-content-center mb-4">
-      <div class="col-md-8 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Publications</h1>
-        <h2 class="mb-4">Selected Publication</h2>
-        <p>Peer‑reviewed work in fairness of AI for medical imaging with practical analysis tooling.</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="pub-item">
-          <h4 class="mb-1">meval: A Statistical Toolbox for Fine‑Grained Model Performance Analysis</h4>
-          <p class="pub-meta mb-2">Sutariya, D., Petersen, E. (2026). In: Puyol‑Antón, E., et al. Fairness of AI in Medical Imaging (LNCS 15976), Springer, Cham.</p>
-          <div class="pub-links mb-2">
-            <a href="https://doi.org/10.1007/978-3-032-05870-6_19" target="_blank" rel="noopener">DOI</a>
-          </div>
-          <ul class="mb-0">
-            <li>Introduces ‘meval’, a toolkit for in‑depth performance and fairness analysis in clinical AI workflows.</li>
-            <li>Addresses critical model bias diagnosis, multiple comparisons, calibration, and visualization needs.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div><!-- container -->
-</section>
-
-<!-- Contact -->
-<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-  <div class="container">
-    <div class="row justify-content-center mb-5 pb-3">
-      <div class="col-md-7 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Contact</h1>
-        <h2 class="mb-4">Contact Me</h2>
-        <p>Below are the details to reach out!</p>
-      </div>
-    </div>
-
-    <div class="row d-flex contact-info mb-5">
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-map-signs"></span>
-          </div>
-          <h3 class="mb-4">Address</h3>
-          <p>Bremen, Germany</p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-phone2"></span>
-          </div>
-          <h3 class="mb-4">Contact Number</h3>
-          <p><a href="tel:+491624769215">+49 1624769215</a></p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-paper-plane"></span>
-          </div>
-          <h3 class="mb-4">Email Address</h3>
-          <p><a href="mailto:dishantsutariya24@gmail.com">dishantsutariya24@gmail.com</a></p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-globe"></span>
-          </div>
-          <h3 class="mb-4">Download Resume</h3>
-          <p><a href="resume.pdf">Resume (PDF)</a></p>
-        </div>
-      </div>
-
+	<!-- <section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
       <div class="container">
-        <br><br>
-        <div class="row justify-content-center">
-          <div class="col-md-7 ftco-animate text-center">
-            <h2>Have a <span>Question?</span> <a href="https://forms.gle/uLaTShUKXraAvHJ77" class="btn btn-primary py-3 px-5">Click Here</a></h2>
+		<div class="row d-md-flex align-items-center">
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="10">0</strong>
+                <span>Achievements</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="10">0</strong>
+                <span>Projects</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="1000">0</strong>
+                <span>Mentored Students</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="500">0</strong>
+                <span>Cups of coffee</span>
+              </div>
+            </div>
           </div>
         </div>
-        <br>
-        <ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
-          <li class="ftco-animate normal-txt">Find me on</li>
-          <li class="ftco-animate"><a href="https://www.linkedin.com/in/dishant-sutariya/"><span class="icon-linkedin"></span></a></li>
-          <li class="ftco-animate"><a href="https://github.com/dishant24"><span class="icon-github"></span></a></li>
-        </ul>
-        <br>
-      </div>
-    </div>
-  </div>
-</section>
+      </div> -->
+	
+	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
+			<!-- <div class="container"> -->
+				<div class="row justify-content-center">
+					<div class="col-md-7 ftco-animate text-center">
+						<h2>More projects on<span> Github  </span> </h2>
+						<div class="heading"> <h4>Designing intelligent AI & ML solutions to solve business and Healthcare problems and uncover actionable insights</h4>
+						<br>
+						<p><a href="https://github.com/dishant24" class="btn btn-primary py-3 px-5">GitHub</a></p>
+						</div>
+					</div>
+				</div>
+			<!-- </div> -->
+		</div>
+	</section>
 
-<!-- Footer -->
-<footer class="ftco-footer ftco-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <p>
-          Copyright
-          &copy;<script>document.write(new Date().getFullYear());</script>
-          All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" rel="noopener">Colorlib</a>
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
 
-<!-- Loader -->
-<div id="ftco-loader" class="show fullscreen">
-  <svg class="circular" width="48px" height="48px">
-    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
-    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
-  </svg>
-</div>
 
-<!-- JS vendors -->
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/jquery.waypoints.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/jquery.animateNumber.min.js"></script>
-<script src="js/scrollax.min.js"></script>
-<script src="js/main.js"></script>
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Contact</h1>
+            <h2 class="mb-4">Contact Me</h2>
+            <p>Below are the details to reach out to me!</p>
+          </div>
+        </div>
 
-<!-- Small fix: ensure “number” counters trigger correctly -->
-<script>
-  $('.number').each(function () {
-    var $this = $(this),
-        countTo = $this.attr('data-number');
-    $({ countNum: $this.text() }).animate({ countNum: countTo }, {
-      duration: 2000,
-      easing: 'swing',
-      step: function () { $this.text(Math.floor(this.countNum)); },
-      complete: function () { $this.text(this.countNum); }
-    });
-  });
-</script>
+        <div class="row d-flex contact-info mb-5">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-map-signs"></span>
+          		</div>
+          		<h3 class="mb-4">Address</h3>
+	            <p>Bremen, Germany</p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-phone2"></span>
+          		</div>
+          		<h3 class="mb-4">Contact Number</h3>
+	            <p><a href="tel://0101010101">+49 1624769215</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-paper-plane"></span>
+          		</div>
+          		<h3 class="mb-4">Email Address</h3>
+	            <p><a href="mailto:info@yoursite.com">dishantsutariya24@gmail.com</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-globe"></span>
+          		</div>
+          		<h3 class="mb-4">Download Resume</h3>
+	            <p><a href="https://github.com/dishant24/dishantsutariya.github.io/resume.pdf">resumelink</a></p>
+	          </div>
+          </div>
+
+		  <div class="container">
+			<br>
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-md-7 ftco-animate text-center">
+					<h2>Have a<span> Question?  </span> <a href="https://forms.gle/uLaTShUKXraAvHJ77" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
+				</div>
+			</div>
+				<br>
+					<ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
+					  <li class="ftco-animate normal-txt">Find me on  </li>
+					  <li class="ftco-animate"><a href="https://github.com/dishant24/"><span class="icon-linkedin"></span></a></li>  
+					  <li class="ftco-animate"><a href="https://github.com/dishant24"><span class="icon-github"></span></a></li>
+					</ul>
+				<br>
+		   </div>
+   </div>
+ </section>
+
+
+ 
+	
+    <footer class="ftco-footer ftco-section">
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-12 text-center">
+  
+			  <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+			</div>
+		  </div>
+		</div>
+	  </footer>
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  
+  <script src="js/main.js"></script>
+    
+  </body>
+</html>
