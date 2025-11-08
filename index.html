@@ -170,14 +170,14 @@
 						for (let i = 0; i < text.length; i++) {
 							setTimeout(() => {
 							typingAnimationElement.textContent += text[i];
-							}, i * 250); // Increase the delay to slow down the typing animation
+							}, i * 200); // Increase the delay to slow down the typing animation
 						}
 
 						// Once the animation is complete, reset the text and start over
 						setTimeout(() => {
 							typingAnimationElement.textContent = '';
 							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-						}, text.length * 250);
+						}, text.length * 200);
 						}
 
 						// Start the typing animation loop
@@ -372,7 +372,7 @@ Transformers, UNet, SimpleITK, DVC, Docker, and MLflow for reliable healthcare A
     				<div class="resume-wrap ftco-animate">
     					<span class="date">October 2022 - August 2025</span>
     					<h2>Masters in Medical Engineering</h2>
-						<h3>Specialization: Medical Image and Data Processing</h3>
+						<h1>Specialization: Medical Image and Data Processing</h1>
     					<span class="position">Friedrich-Alexander-Universität</span>
     				</div>
     			</div>
