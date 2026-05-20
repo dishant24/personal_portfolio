@@ -1,269 +1,230 @@
-/* =====================================================
-   dishant.ai — Futuristic ML/AI Portfolio
-   portfolio.js — Vanilla JS interactions
-   ===================================================== */
-
+/* dishant.ai — portfolio.js */
 'use strict';
 
 /* ============================================================
-   ParticleField
+   PARTICLE FIELD
    ============================================================ */
 class ParticleField {
-  constructor() {
-    this.canvas = document.getElementById('particle-canvas');
-    if (!this.canvas) return;
-    this.ctx = this.canvas.getContext('2d');
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx    = canvas.getContext('2d');
+    this.particles = [];
     this.mouse = { x: -9999, y: -9999 };
-    this.particles = [];
-    this.running = true;
-
-    this._resize();
-    this._spawnParticles();
-    this._bindEvents();
-    this._tick();
+    this.resize();
+    this.spawn();
+    window.addEventListener('resize', () => this.resize());
+    window.addEventListener('mousemove', e => { this.mouse.x = e.clientX; this.mouse.y = e.clientY; });
+    this.loop();
   }
 
-  _resize() {
-    this.W = this.canvas.width  = window.innerWidth;
-    this.H = this.canvas.height = window.innerHeight;
+  resize() {
+    this.canvas.width  = window.innerWidth;
+    this.canvas.height = window.innerHeight;
   }
 
-  _count() {
-    return window.innerWidth < 768 ? 30 : 60;
+  spawn() {
+    const n = Math.min(55, Math.floor(window.innerWidth / 22));
+    this.particles = Array.from({ length: n }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - .5) * .4,
+      vy: (Math.random() - .5) * .4,
+      r: Math.random() * 1.8 + .5,
+    }));
   }
 
-  _spawnParticles() {
-    const n = this._count();
-    this.particles = [];
-    for (let i = 0; i < n; i++) {
-      this.particles.push({
-        x: Math.random() * this.W,
-        y: Math.random() * this.H,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        r:  Math.random() * 1.5 + 1,
-        opacity: Math.random() * 0.5 + 0.2,
-      });
-    }
-  }
+  loop() {
+    const { ctx, canvas, particles, mouse } = this;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  _bindEvents() {
-    window.addEventListener('resize', () => {
-      this._resize();
-      this._spawnParticles();
-    });
-    window.addEventListener('mousemove', e => {
-      this.mouse.x = e.clientX;
-      this.mouse.y = e.clientY;
-    });
-    window.addEventListener('mouseleave', () => {
-      this.mouse.x = -9999;
-      this.mouse.y = -9999;
-    });
-  }
-
-  _tick() {
-    if (!this.running) return;
-    const { ctx, W, H, particles, mouse } = this;
-
-    ctx.clearRect(0, 0, W, H);
-
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-
-      // Mouse repulsion
-      const dx = p.x - mouse.x;
-      const dy = p.y - mouse.y;
+    for (const p of particles) {
+      // mouse repulsion
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 80 && dist > 0) {
-        const force = (80 - dist) / 80;
-        p.vx += (dx / dist) * force * 0.4;
-        p.vy += (dy / dist) * force * 0.4;
+      if (dist < 90) {
+        const force = (90 - dist) / 90 * .8;
+        p.vx += (dx / dist) * force;
+        p.vy += (dy / dist) * force;
       }
 
-      // Clamp velocity
-      const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-      if (speed > 1.5) {
-        p.vx = (p.vx / speed) * 1.5;
-        p.vy = (p.vy / speed) * 1.5;
-      }
+      // damping
+      p.vx *= .97;
+      p.vy *= .97;
 
-      // Move
       p.x += p.vx;
       p.y += p.vy;
 
-      // Bounce
-      if (p.x < 0 || p.x > W) p.vx *= -1;
-      if (p.y < 0 || p.y > H) p.vy *= -1;
+      // wrap
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width)  p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
 
-      // Draw particle
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(0, 212, 255, ${p.opacity})`;
+      ctx.fillStyle = 'rgba(0,212,255,.55)';
       ctx.fill();
+    }
 
-      // Connect to neighbors
+    // connections
+    for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
-        const q = particles[j];
-        const ex = p.x - q.x;
-        const ey = p.y - q.y;
-        const d  = Math.sqrt(ex * ex + ey * ey);
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d  = Math.sqrt(dx * dx + dy * dy);
         if (d < 130) {
-          const alpha = (1 - d / 130) * 0.35;
           ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`;
-          ctx.lineWidth = 0.6;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0,212,255,${(1 - d / 130) * .18})`;
+          ctx.lineWidth   = .8;
           ctx.stroke();
         }
       }
     }
 
-    requestAnimationFrame(() => this._tick());
+    requestAnimationFrame(() => this.loop());
   }
 }
 
 /* ============================================================
-   CursorGlow
+   CURSOR GLOW
    ============================================================ */
 function initCursorGlow() {
-  const glow = document.getElementById('cursor-glow');
-  if (!glow) return;
-
-  let ax = window.innerWidth / 2;
-  let ay = window.innerHeight / 2;
-  let tx = ax;
-  let ty = ay;
-
-  window.addEventListener('mousemove', e => {
-    tx = e.clientX;
-    ty = e.clientY;
+  const el = document.getElementById('cursor-glow');
+  if (!el) return;
+  // hide on touch devices
+  if (window.matchMedia('(pointer: coarse)').matches) { el.style.display = 'none'; return; }
+  document.addEventListener('mousemove', e => {
+    el.style.left = e.clientX + 'px';
+    el.style.top  = e.clientY + 'px';
   });
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function update() {
-    ax = lerp(ax, tx, 0.12);
-    ay = lerp(ay, ty, 0.12);
-    glow.style.left = ax + 'px';
-    glow.style.top  = ay + 'px';
-    requestAnimationFrame(update);
-  }
-
-  update();
 }
 
 /* ============================================================
-   CardTilt
+   SCROLL PROGRESS + TOKEN COUNTER
    ============================================================ */
-function initCardTilt() {
-  document.querySelectorAll('.tilt-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const cx = rect.left + rect.width  / 2;
-      const cy = rect.top  + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const rx =  (dy / (rect.height / 2)) * 8;
-      const ry = -(dx / (rect.width  / 2)) * 8;
-      const mx = ((e.clientX - rect.left) / rect.width)  * 100;
-      const my = ((e.clientY - rect.top)  / rect.height) * 100;
-      card.style.setProperty('--rx', rx + 'deg');
-      card.style.setProperty('--ry', ry + 'deg');
-      card.style.setProperty('--mx', mx + '%');
-      card.style.setProperty('--my', my + '%');
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.setProperty('--rx', '0deg');
-      card.style.setProperty('--ry', '0deg');
-    });
-  });
+function initScrollProgress() {
+  const bar   = document.getElementById('scroll-progress');
+  const token = document.getElementById('token-counter');
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+    if (bar) bar.style.width = (pct * 100) + '%';
+    if (token) token.textContent = 'tokens: ' + (Math.floor(pct * 42) + 1280);
+  }, { passive: true });
 }
 
 /* ============================================================
-   Terminal Boot
+   NAVBAR — active link + hamburger
+   ============================================================ */
+function initNavbar() {
+  const sections = document.querySelectorAll('section[id]');
+  const links    = document.querySelectorAll('.nav-links a');
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id);
+        });
+      }
+    });
+  }, { threshold: .4 });
+
+  sections.forEach(s => io.observe(s));
+
+  // hamburger
+  const burger = document.getElementById('nav-burger');
+  const drawer = document.getElementById('nav-drawer');
+  if (burger && drawer) {
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      drawer.classList.toggle('open');
+    });
+  }
+}
+
+window.closeDrawer = function () {
+  document.getElementById('nav-burger')?.classList.remove('open');
+  document.getElementById('nav-drawer')?.classList.remove('open');
+};
+
+/* ============================================================
+   TERMINAL BOOT SEQUENCE
    ============================================================ */
 function initTerminal() {
-  const body = document.getElementById('terminal-body');
+  const body = document.getElementById('term-body');
   if (!body) return;
 
   const lines = [
-    { cls: 't-cmd',  txt: '$ init portfolio_agent --profile dishant --version 2.0', ms: 0   },
-    { cls: 't-info', txt: '  [sys] loading environment...', ms: 300  },
-    { cls: 't-ok',   txt: '  ✓ env ready  [python 3.11 · pytorch 2.3 · cuda 12.1]', ms: 500  },
-    { cls: 't-info', txt: '  [sys] indexing knowledge base...', ms: 350  },
-    { cls: 't-ok',   txt: '  ✓ profile loaded  [2 publications · 3 roles · 18 skills]', ms: 600  },
-    { cls: 't-info', txt: '  [sys] connecting to github.com/dishant24...', ms: 280  },
-    { cls: 't-ok',   txt: '  ✓ repos indexed  [4 projects found]', ms: 700  },
-    { cls: 't-info', txt: '  [sys] calibrating fairness engine...', ms: 320  },
-    { cls: 't-ok',   txt: '  ✓ agent online  [model: dishant-researcher-v2]', ms: 600  },
+    { type: 'cmd',  text: '$ ssh dishant@ai.agent --init' },
+    { type: 'info', text: 'Establishing secure tunnel...' },
+    { type: 'ok',   text: '✓ Connection established' },
+    { type: 'cmd',  text: '$ load --profile dishant.sutariya' },
+    { type: 'ok',   text: '✓ Profile loaded — ML Engineer · AI Researcher' },
+    { type: 'cmd',  text: '$ query --papers --count' },
+    { type: 'ok',   text: '✓ 2 publications indexed (MICCAI 2025 · BVM 2026)' },
+    { type: 'cmd',  text: '$ check --awards' },
+    { type: 'ok',   text: '✓ Best Poster Award — MICCAI 2025 FAIMI Workshop' },
   ];
 
-  let delay = 0;
-  lines.forEach(line => {
-    delay += line.ms || 200;
+  lines.forEach((line, i) => {
     setTimeout(() => {
       const el = document.createElement('div');
-      el.className = line.cls;
-      el.textContent = line.txt;
+      el.className = 'term-line ' + line.type;
+      el.innerHTML = `<span class="tl-prompt">&gt;</span><span class="tl-txt">${line.text}</span>`;
       body.appendChild(el);
-      body.scrollTop = body.scrollHeight;
-    }, delay);
+    }, i * 280);
   });
 
-  // Add blinking cursor after all lines
-  const totalDelay = delay + 400;
+  // blinking cursor after lines
   setTimeout(() => {
-    const cur = document.createElement('span');
-    cur.className = 't-cursor blink';
+    const cur = document.createElement('div');
+    cur.className = 'term-line cmd';
+    cur.innerHTML = '<span class="tl-prompt">&gt;</span><span class="tl-txt role-cursor"></span>';
     body.appendChild(cur);
-  }, totalDelay);
+  }, lines.length * 280 + 200);
 }
 
 /* ============================================================
-   Role Typewriter
+   ROLE TYPEWRITER
    ============================================================ */
 function initRoles() {
-  const el = document.getElementById('role-display');
+  const el = document.getElementById('role-text');
   if (!el) return;
 
   const roles = [
     'Machine Learning Engineer',
     'AI Researcher',
     'Data Scientist',
-    'Medical Imaging Specialist',
     'Deep Learning Engineer',
     'Generative AI Developer',
     'MLOps Engineer',
     'Applied AI Researcher',
+    'Computer Vision Engineer',
   ];
 
-  let ri = 0;
-  let ci = 0;
-  let erasing = false;
+  let idx = 0, charIdx = 0, deleting = false;
 
   function tick() {
-    const target = roles[ri];
+    const role = roles[idx];
+    const cur  = '<span class="role-cursor"></span>';
 
-    if (!erasing) {
-      // Type
-      el.textContent = target.slice(0, ci + 1);
-      ci++;
-      if (ci === target.length) {
-        erasing = true;
+    if (!deleting) {
+      charIdx++;
+      el.innerHTML = role.slice(0, charIdx) + cur;
+      if (charIdx === role.length) {
+        deleting = true;
         setTimeout(tick, 2000);
         return;
       }
       setTimeout(tick, 55);
     } else {
-      // Erase
-      el.textContent = target.slice(0, ci - 1);
-      ci--;
-      if (ci === 0) {
-        erasing = false;
-        ri = (ri + 1) % roles.length;
+      charIdx--;
+      el.innerHTML = role.slice(0, charIdx) + cur;
+      if (charIdx === 0) {
+        deleting = false;
+        idx = (idx + 1) % roles.length;
         setTimeout(tick, 300);
         return;
       }
@@ -275,226 +236,130 @@ function initRoles() {
 }
 
 /* ============================================================
-   Tool Call Reveals
+   INTERSECTION OBSERVER — fade-up + exec-summary reveals
    ============================================================ */
-function initToolCalls() {
-  const blocks = document.querySelectorAll('.tool-block');
+function initObservers() {
+  // fade-up for agent-bubbles and exec-summaries
+  const fadeIO = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeIO.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.fade-up').forEach(el => fadeIO.observe(el));
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const block = entry.target;
-      if (block.dataset.revealed) return;
-      block.dataset.revealed = '1';
-
-      setTimeout(() => {
-        const badge  = block.querySelector('.tc-badge');
-        const result = block.querySelector('.tool-result');
-        if (badge) {
-          badge.textContent = '✓ done';
-          badge.classList.add('done');
-        }
-        if (result) {
-          result.classList.add('show');
-        }
-      }, 800);
-
-      observer.unobserve(block);
+  // exec-summary pill reveal with stagger
+  const execIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const pills = e.target.querySelectorAll('.epill');
+        pills.forEach((pill, i) => {
+          pill.style.opacity = '0';
+          pill.style.transform = 'translateY(8px)';
+          setTimeout(() => {
+            pill.style.transition = 'opacity .4s ease, transform .4s ease';
+            pill.style.opacity = '1';
+            pill.style.transform = 'none';
+          }, 100 + i * 80);
+        });
+        execIO.unobserve(e.target);
+      }
     });
-  }, { threshold: 0.3 });
-
-  blocks.forEach(b => observer.observe(b));
+  }, { threshold: .4 });
+  document.querySelectorAll('.exec-summary').forEach(el => execIO.observe(el));
 }
 
 /* ============================================================
-   Skill Bars
+   SKILL BARS
    ============================================================ */
 function initSkillBars() {
-  const fills = document.querySelectorAll('.sb-fill');
-  if (!fills.length) return;
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const fill = entry.target;
-      if (fill.dataset.animated) return;
-      fill.dataset.animated = '1';
-
-      const w = fill.dataset.w || '0';
-      setTimeout(() => {
-        fill.style.width = w + '%';
-      }, 100);
-
-      observer.unobserve(fill);
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.w + '%';
+        });
+        io.unobserve(e.target);
+      }
     });
-  }, { threshold: 0.4 });
-
-  fills.forEach((f, i) => {
-    f.style.transitionDelay = (i * 0.08) + 's';
-    observer.observe(f);
-  });
+  }, { threshold: .35 });
+  document.querySelectorAll('.skill-cat').forEach(el => io.observe(el));
 }
 
 /* ============================================================
-   Counter Animation
+   COUNTERS
    ============================================================ */
 function initCounters() {
-  const counters = document.querySelectorAll('.counter');
-  if (!counters.length) return;
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
-  function easeOutQuad(t) { return t * (2 - t); }
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      if (el.dataset.done) return;
-      el.dataset.done = '1';
-
-      const target   = parseInt(el.dataset.target, 10) || 0;
-      const duration = 1500;
-      const start    = performance.now();
-
-      function step(now) {
-        const t = Math.min((now - start) / duration, 1);
-        el.textContent = Math.round(easeOutQuad(t) * target);
-        if (t < 1) requestAnimationFrame(step);
-        else el.textContent = target;
-      }
-
-      requestAnimationFrame(step);
-      observer.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => observer.observe(c));
-}
-
-/* ============================================================
-   Scroll Progress + Token Counter
-   ============================================================ */
-function initScrollProgress() {
-  const bar  = document.getElementById('scroll-progress');
-  const tcEl = document.getElementById('tc-val');
-
-  if (!bar) return;
-
-  function onScroll() {
-    const scrollY   = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct       = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
-
-    bar.style.width = pct + '%';
-
-    if (tcEl) {
-      const tokens = Math.floor(pct * 42) + 1280;
-      tcEl.textContent = tokens.toLocaleString();
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-}
-
-/* ============================================================
-   Fade-Up + Timeline Fades (IntersectionObserver)
-   ============================================================ */
-function initFades() {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('vis');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.fade-up, .tl-fade').forEach(el => observer.observe(el));
-}
-
-/* ============================================================
-   Active Nav
-   ============================================================ */
-function initNav() {
-  const sections = document.querySelectorAll('section[id]');
-  const links    = document.querySelectorAll('.nav-link');
-  if (!sections.length || !links.length) return;
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const id = entry.target.id;
-      links.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('[data-count]').forEach(el => {
+        const target = +el.dataset.count;
+        const dur    = 1500;
+        const start  = performance.now();
+        function frame(now) {
+          const t = Math.min((now - start) / dur, 1);
+          el.textContent = Math.round(easeOut(t) * target);
+          if (t < 1) requestAnimationFrame(frame);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(frame);
       });
+      io.unobserve(e.target);
     });
-  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  }, { threshold: .3 });
 
-  sections.forEach(s => observer.observe(s));
+  document.querySelectorAll('#hero, #about').forEach(el => io.observe(el));
 }
 
 /* ============================================================
-   Mobile Hamburger
+   CARD TILT (3D hover)
    ============================================================ */
-function initMobileNav() {
-  const btn   = document.getElementById('hamburger');
-  const links = document.getElementById('nav-links');
-  if (!btn || !links) return;
+function initCardTilt() {
+  const cards = document.querySelectorAll('.tl-card, .pub-card, .proj-card');
 
-  btn.addEventListener('click', () => {
-    const open = links.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open);
-  });
-
-  // Close on link click
-  links.querySelectorAll('.nav-link').forEach(a => {
-    a.addEventListener('click', () => {
-      links.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r  = card.getBoundingClientRect();
+      const x  = (e.clientX - r.left) / r.width  - .5;
+      const y  = (e.clientY - r.top)  / r.height - .5;
+      card.style.setProperty('--rx', (-y * 8) + 'deg');
+      card.style.setProperty('--ry', ( x * 8) + 'deg');
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width  * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
     });
-  });
 
-  // Close on outside click
-  document.addEventListener('click', e => {
-    if (!btn.contains(e.target) && !links.contains(e.target)) {
-      links.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-    }
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
   });
 }
 
 /* ============================================================
-   Smooth scroll for chip/anchor links (offset for navbar)
+   CHIP SCROLL HELPER
    ============================================================ */
-function initSmoothScroll() {
-  const NAV_H = 64;
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const href = a.getAttribute('href');
-      if (!href || href === '#') return;
-      const target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      const top = target.getBoundingClientRect().top + window.scrollY - NAV_H;
-      window.scrollTo({ top, behavior: 'smooth' });
-    });
-  });
-}
+window.navScrollTo = function (selector) {
+  const el = document.querySelector(selector);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
 
 /* ============================================================
-   Boot
+   INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  new ParticleField();
+  // canvas particle field — skip on small mobile for perf
+  if (window.innerWidth > 480) {
+    const canvas = document.getElementById('canvas-bg');
+    if (canvas) new ParticleField(canvas);
+  }
+
   initCursorGlow();
-  initCardTilt();
+  initScrollProgress();
+  initNavbar();
   initTerminal();
   initRoles();
-  initToolCalls();
+  initObservers();
   initSkillBars();
   initCounters();
-  initScrollProgress();
-  initFades();
-  initNav();
-  initMobileNav();
-  initSmoothScroll();
+  initCardTilt();
 });

@@ -1,753 +1,824 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dishant.ai — AI Researcher Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/icomoon.css" />
-  <link rel="stylesheet" href="css/portfolio.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dishant Sutariya — Machine Learning Engineer &amp; AI Researcher based in Bremen, Germany. MICCAI publications, Fraunhofer MEVIS, fairness AI.">
+  <title>Dishant Sutariya · ML Engineer &amp; AI Researcher</title>
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/portfolio.css">
 </head>
 <body>
 
-<!-- Particle canvas -->
-<canvas id="particle-canvas"></canvas>
-
-<!-- Cursor glow -->
-<div id="cursor-glow"></div>
-
-<!-- Scroll progress -->
+<!-- scroll progress bar -->
 <div id="scroll-progress"></div>
 
-<!-- ===================== NAVBAR ===================== -->
-<nav id="navbar">
-  <div class="nav-inner">
-    <a href="#" class="nav-brand">
-      <span class="brand-hex">⬡</span>
-      <span class="brand-text">dishant.ai</span>
-      <span class="status-dot"></span>
-      <span class="status-label">online</span>
-    </a>
+<!-- cursor glow -->
+<div id="cursor-glow"></div>
 
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li><a href="#experience" class="nav-link">Experience</a></li>
-      <li><a href="#publications" class="nav-link">Publications</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
+<!-- particle canvas -->
+<canvas id="canvas-bg"></canvas>
 
-    <div class="nav-right">
-      <div class="token-counter">
-        <span class="tc-label">tokens:</span>
-        <span id="tc-val">1280</span>
-      </div>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="nav" id="navbar">
+  <div class="nav-brand">
+    <span class="nav-status"></span>
+    dishant.ai
   </div>
+
+  <div class="nav-links">
+    <a href="#about">about</a>
+    <a href="#skills">skills</a>
+    <a href="#experience">experience</a>
+    <a href="#publications">papers</a>
+    <a href="#projects">projects</a>
+    <a href="#contact">contact</a>
+  </div>
+
+  <div class="nav-token" id="token-counter">tokens: 1280</div>
+
+  <button class="nav-burger" id="nav-burger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- ===================== HERO ===================== -->
+<!-- mobile drawer -->
+<div class="nav-drawer" id="nav-drawer">
+  <a href="#about"        onclick="closeDrawer()">about</a>
+  <a href="#skills"       onclick="closeDrawer()">skills</a>
+  <a href="#experience"   onclick="closeDrawer()">experience</a>
+  <a href="#publications" onclick="closeDrawer()">papers</a>
+  <a href="#projects"     onclick="closeDrawer()">projects</a>
+  <a href="#contact"      onclick="closeDrawer()">contact</a>
+</div>
+
+<main>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
 <section id="hero">
   <div class="hero-grid">
-    <!-- Left: Terminal -->
+
+    <!-- terminal side -->
     <div class="hero-terminal">
-      <div class="terminal-window">
-        <div class="terminal-titlebar">
-          <span class="tb-dot red"></span>
-          <span class="tb-dot yellow"></span>
-          <span class="tb-dot green"></span>
-          <span class="tb-title">dishant.ai — session init</span>
-        </div>
-        <div class="terminal-body" id="terminal-body"></div>
+      <div class="term-bar">
+        <span class="term-dot red"></span>
+        <span class="term-dot amber"></span>
+        <span class="term-dot green"></span>
+        <span class="term-title">dishant.ai — session init</span>
       </div>
 
-      <!-- Role typewriter -->
-      <div class="hero-roles">
-        <span class="role-prefix">role —</span>
-        <span id="role-display"></span>
-        <span class="t-cursor blink">|</span>
+      <div class="term-body" id="term-body"></div>
+
+      <div class="term-role">
+        <div class="role-label">// current role</div>
+        <div class="role-text" id="role-text"><span class="role-cursor"></span></div>
       </div>
 
-      <!-- Stats bar -->
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num counter" data-target="2">0</span>
-          <span class="stat-label">Publications</span>
+          <span class="stat-val" data-count="3">0</span>
+          <span class="stat-key">yrs exp</span>
         </div>
         <div class="stat-item">
-          <span class="stat-num">3<span class="stat-plus">+</span></span>
-          <span class="stat-label">Years Exp</span>
+          <span class="stat-val" data-count="2">0</span>
+          <span class="stat-key">papers</span>
         </div>
         <div class="stat-item">
-          <span class="stat-num">10<span class="stat-plus">+</span></span>
-          <span class="stat-label">Projects</span>
+          <span class="stat-val" data-count="10">0</span>
+          <span class="stat-key">projects</span>
         </div>
         <div class="stat-item">
-          <span class="stat-num counter" data-target="2">0</span>
-          <span class="stat-label">Awards</span>
+          <span class="stat-val" data-count="1">0</span>
+          <span class="stat-key">award</span>
         </div>
       </div>
 
-      <!-- Prompt chips -->
-      <div class="prompt-chips">
-        <a href="#about" class="chip">$ query --profile</a>
-        <a href="#skills" class="chip">$ show --skills</a>
-        <a href="#experience" class="chip">$ show --experience</a>
-        <a href="#publications" class="chip">$ list --papers</a>
-        <a href="#projects" class="chip">$ show --projects</a>
-        <a href="#contact" class="chip">$ contact --agent</a>
+      <div class="hero-chips">
+        <span class="chip" onclick="navScrollTo('#about')">$ query --profile</span>
+        <span class="chip" onclick="navScrollTo('#skills')">$ show --skills</span>
+        <span class="chip" onclick="navScrollTo('#experience')">$ show --experience</span>
+        <span class="chip" onclick="navScrollTo('#publications')">$ list --papers</span>
+        <span class="chip" onclick="navScrollTo('#projects')">$ show --projects</span>
+        <span class="chip" onclick="navScrollTo('#contact')">$ contact --agent</span>
       </div>
     </div>
 
-    <!-- Right: Profile -->
+    <!-- profile side -->
     <div class="hero-profile">
       <div class="profile-frame">
         <div class="profile-ring"></div>
-        <img src="images/profile_pic.jpg" alt="Dishant Sutariya" class="profile-img" />
+        <img src="images/profile_pic.jpg" alt="Dishant Sutariya" class="profile-img">
       </div>
+
       <h1 class="hero-name">Dishant Sutariya</h1>
+
       <p class="hero-location">
         <span class="loc-icon">◎</span> Bremen, Germany
       </p>
+
       <div class="hero-socials">
-        <a href="https://github.com/dishant24" target="_blank" class="social-btn">
-          <span class="icon-github"></span> GitHub
-        </a>
-        <a href="https://linkedin.com/in/dishant-sutariya" target="_blank" class="social-btn social-btn--violet">
-          <span class="icon-linkedin"></span> LinkedIn
-        </a>
-        <a href="https://drive.google.com/file/d/1m0LvMDoTdvY3dT8TsqFYG06IUcpaMCmX/view?usp=sharing" target="_blank" class="social-btn social-btn--green">
-          ↓ Resume
-        </a>
+        <a href="https://www.linkedin.com/in/dishant-sutariya/" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/dishant24" class="social-link" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://drive.google.com/file/d/1m0LvMDoTdvY3dT8TsqFYG06IUcpaMCmX/view?usp=sharing" class="social-link" target="_blank" rel="noopener">CV</a>
       </div>
+
     </div>
+
   </div>
 </section>
 
-<!-- ===================== ABOUT ===================== -->
-<section id="about" class="section">
-  <div class="container">
-    <!-- User bubble -->
-    <div class="chat-user">
-      <div class="user-bubble">$ query --profile --detail full</div>
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="sec-title">§ 01 — about</div>
+
+    <div class="user-bubble">
+      <div class="user-bubble-inner">$ query --profile --verbose</div>
     </div>
 
-    <!-- Agent label -->
-    <div class="agent-label">
-      <span class="agent-hex">⬡</span> dishant.ai
-    </div>
+    <div class="agent-label">dishant.ai · about.agent</div>
 
-    <!-- Agent response -->
     <div class="agent-bubble fade-up">
-      <!-- Tool call -->
-      <div class="tool-block" id="tc-about">
-        <div class="tool-header">
-          <span class="tool-fn">fn: fetch_researcher_profile(id="dishant-sutariya")</span>
-          <span class="tc-badge">⟳ executing</span>
-        </div>
-        <div class="tool-result">
-          <span class="tr-ok">✓</span> Profile loaded — 2 publications, 3 roles, 18+ skills indexed
-        </div>
-      </div>
+      <p class="about-desc">
+        Machine Learning Engineer and AI Researcher with 3+ years of hands-on experience building, evaluating, and deploying ML/AI systems. Master's graduate in Medical Engineering (FAU Erlangen) with a research track record including MICCAI publications and industry collaborations at Fraunhofer MEVIS. Passionate about responsible AI — combining engineering rigour with statistical validity to deliver production-ready solutions. Fluent in English, conversational German (B1).
+      </p>
 
       <div class="about-grid">
-        <div class="about-text">
-          <h2 class="section-title">About <span class="accent">Me</span></h2>
-          <p class="about-bio">
-            AI Researcher specializing in medical imaging and fairness, with 2+ years at Fraunhofer MEVIS.
-            I design deep learning systems that are fair, robust, and clinically reliable — translating
-            research rigor into real-world patient outcomes. My work spans bias mitigation, chest X-ray
-            diagnosis, statistical model evaluation, and generative medical imaging.
-          </p>
-          <div class="about-info-grid">
-            <div class="ai-item">
-              <span class="ai-key">Profile</span>
-              <span class="ai-val">Applied Medical AI Researcher &amp; ML Engineer</span>
-            </div>
-            <div class="ai-item">
-              <span class="ai-key">Domain</span>
-              <span class="ai-val">Healthcare, Medical Imaging, Fairness AI</span>
-            </div>
-            <div class="ai-item">
-              <span class="ai-key">Education</span>
-              <span class="ai-val">M.Sc. Medical Engineering — FAU Erlangen-Nürnberg</span>
-            </div>
-            <div class="ai-item">
-              <span class="ai-key">Location</span>
-              <span class="ai-val">Bremen, Germany</span>
-            </div>
-            <div class="ai-item">
-              <span class="ai-key">Languages</span>
-              <span class="ai-val">English (B2) · German (B1) · Hindi · Gujarati</span>
-            </div>
-            <div class="ai-item">
-              <span class="ai-key">Interests</span>
-              <span class="ai-val">Traveling · Gym · Sport</span>
-            </div>
-          </div>
+        <div class="info-list">
+          <div class="info-row"><span class="info-key">profile</span><span class="info-val">ML Engineer · AI Researcher</span></div>
+          <div class="info-row"><span class="info-key">domains</span><span class="info-val">Healthcare · Insurance · Enterprise AI</span></div>
+          <div class="info-row"><span class="info-key">education</span><span class="info-val">M.Sc. Medical Engineering, FAU</span></div>
+          <div class="info-row"><span class="info-key">Machine Learning</span><span class="info-val">PyTorch · TensorFlow · Scikit-learn</span></div>
+          <div class="info-row"><span class="info-key">MLOps</span><span class="info-val">Docker · AWS · MLflow · GitHub Actions</span></div>
+          <div class="info-row"><span class="info-key">languages</span><span class="info-val">English (C1) · German (B1) · Hindi (native)</span></div>
+          <div class="info-row"><span class="info-key">interests</span><span class="info-val">Traveling · Gym · Sports</span></div>
         </div>
 
-        <div class="about-awards">
-          <h3 class="subsection-title">Awards</h3>
-          <div class="award-card fade-up">
-            <div class="award-icon">🏆</div>
-            <div class="award-body">
-              <div class="award-title">Best Poster Presentation</div>
-              <div class="award-event">FAIMI Workshop @ MICCAI 2025</div>
-              <div class="award-loc">Busan, South Korea · Sep 2025</div>
-              <div class="award-desc">For meval — statistical toolbox for fine-grained model analysis</div>
+        <div>
+          <div class="about-stats">
+            <div class="astat">
+              <div class="astat-val" data-count="3">0</div>
+              <div class="astat-key">Years Exp.</div>
+            </div>
+            <div class="astat">
+              <div class="astat-val" data-count="2">0</div>
+              <div class="astat-key">Publications</div>
+            </div>
+            <div class="astat">
+              <div class="astat-val" data-count="10">0</div>
+              <div class="astat-key">Projects</div>
+            </div>
+            <div class="astat">
+              <div class="astat-val" data-count="1">0</div>
+              <div class="astat-key">Award</div>
             </div>
           </div>
-          <div class="award-card fade-up">
-            <div class="award-icon">🥇</div>
-            <div class="award-body">
-              <div class="award-title">1st Place — D&amp;A Summer Challenge</div>
-              <div class="award-event">Siemens Healthineers Hackathon</div>
-              <div class="award-loc">Forchheim, Germany · Sep 2023</div>
-              <div class="award-desc">Chest X-ray image registration — democratic voting winner</div>
-            </div>
-          </div>
+
+          <a href="https://drive.google.com/file/d/1m0LvMDoTdvY3dT8TsqFYG06IUcpaMCmX/view?usp=sharing" class="cv-btn" target="_blank" rel="noopener">
+            ↓ Download CV
+          </a>
+        </div>
+      </div>
+
+      <div class="exec-summary fade-up">
+        <div class="exec-header">
+          <span class="exec-prompt">›</span>
+          <span>profile.query completed</span>
+          <span class="exec-time">12ms</span>
+        </div>
+        <div class="exec-pills">
+          <span class="epill green">● Open to work in Germany</span>
+          <span class="epill cyan">📍 Bremen, Germany</span>
+          <span class="epill">3+ years experience</span>
+          <span class="epill violet">2 publications</span>
+          <span class="epill">English C1 · German B1 · Hindi native</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== SKILLS ===================== -->
-<section id="skills" class="section">
-  <div class="container">
-    <div class="chat-user">
-      <div class="user-bubble">$ list --skills --format ranked</div>
+<!-- ============================================================
+     SKILLS
+     ============================================================ -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="sec-title">§ 02 — skills</div>
+
+    <div class="user-bubble">
+      <div class="user-bubble-inner">$ show --skills --format=matrix</div>
     </div>
-    <div class="agent-label">
-      <span class="agent-hex">⬡</span> dishant.ai
-    </div>
+
+    <div class="agent-label">dishant.ai · skills.agent</div>
+
     <div class="agent-bubble fade-up">
-      <div class="tool-block" id="tc-skills">
-        <div class="tool-header">
-          <span class="tool-fn">fn: index_skills(source="cv", format="ranked")</span>
-          <span class="tc-badge">⟳ executing</span>
-        </div>
-        <div class="tool-result">
-          <span class="tr-ok">✓</span> 18 skills across 4 categories — ranked by proficiency
-        </div>
-      </div>
-
-      <h2 class="section-title">Technical <span class="accent">Skills</span></h2>
-
       <div class="skills-grid">
-        <!-- Programming -->
-        <div class="skill-cat fade-up">
+
+        <!-- Core ML -->
+        <div class="skill-cat">
           <div class="skill-cat-header">
-            <span class="skill-cat-icon">⌨</span>
-            <span class="skill-cat-name">Programming</span>
+            <span class="skill-cat-icon">🧠</span>
+            <span class="skill-cat-name">Machine Learning</span>
           </div>
           <div class="skill-bar-wrap">
-            <div class="sb-label"><span>Python</span><span class="sb-pct">95%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="95"></div></div>
+            <div class="skill-bar-label"><span>Python</span><span>92%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="92"></div></div>
           </div>
           <div class="skill-bar-wrap">
-            <div class="sb-label"><span>SQL</span><span class="sb-pct">65%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="65"></div></div>
+            <div class="skill-bar-label"><span>Scikit-learn</span><span>88%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="88"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Statistical Analysis</span><span>85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="85"></div></div>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag cyan">Classification</span>
+            <span class="tag cyan">Regression</span>
+            <span class="tag">Fairness AI</span>
+            <span class="tag">AUROC / PRG</span>
           </div>
         </div>
 
-        <!-- ML & DL -->
-        <div class="skill-cat fade-up">
+        <!-- Deep Learning -->
+        <div class="skill-cat">
           <div class="skill-cat-header">
-            <span class="skill-cat-icon">◈</span>
-            <span class="skill-cat-name">ML &amp; Deep Learning</span>
+            <span class="skill-cat-icon">⚡</span>
+            <span class="skill-cat-name">Deep Learning</span>
           </div>
           <div class="skill-bar-wrap">
-            <div class="sb-label"><span>PyTorch</span><span class="sb-pct">90%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="90"></div></div>
+            <div class="skill-bar-label"><span>PyTorch</span><span>85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="85"></div></div>
           </div>
           <div class="skill-bar-wrap">
-            <div class="sb-label"><span>Scikit-learn / Pandas</span><span class="sb-pct">92%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="92"></div></div>
+            <div class="skill-bar-label"><span>TensorFlow / Keras</span><span>75%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="75"></div></div>
           </div>
           <div class="skill-bar-wrap">
-            <div class="sb-label"><span>TensorFlow / Keras</span><span class="sb-pct">75%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="75"></div></div>
+            <div class="skill-bar-label"><span>Computer Vision</span><span>82%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="82"></div></div>
           </div>
-          <div class="skill-bar-wrap">
-            <div class="sb-label"><span>HuggingFace / LangChain</span><span class="sb-pct">80%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="80"></div></div>
-          </div>
-          <div class="skill-bar-wrap">
-            <div class="sb-label"><span>OpenCV</span><span class="sb-pct">85%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="85"></div></div>
+          <div class="tag-cloud">
+            <span class="tag violet">CNN / ViT</span>
+            <span class="tag violet">Diffusion Models</span>
+            <span class="tag">Image Segmentation</span>
           </div>
         </div>
 
-        <!-- MLOps / DevOps -->
-        <div class="skill-cat fade-up">
+        <!-- Generative AI & LLMs -->
+        <div class="skill-cat">
           <div class="skill-cat-header">
-            <span class="skill-cat-icon">⬡</span>
-            <span class="skill-cat-name">MLOps &amp; DevOps</span>
+            <span class="skill-cat-icon">✨</span>
+            <span class="skill-cat-name">Generative AI &amp; LLMs</span>
           </div>
           <div class="skill-bar-wrap">
-            <div class="sb-label"><span>Docker</span><span class="sb-pct">80%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="80"></div></div>
+            <div class="skill-bar-label"><span>RAG Systems</span><span>80%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
           </div>
           <div class="skill-bar-wrap">
-            <div class="sb-label"><span>AWS (EC2, S3, SageMaker)</span><span class="sb-pct">70%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="70"></div></div>
+            <div class="skill-bar-label"><span>Prompt Engineering</span><span>78%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="78"></div></div>
           </div>
           <div class="skill-bar-wrap">
-            <div class="sb-label"><span>MLflow / W&amp;B / DVC</span><span class="sb-pct">78%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="78"></div></div>
+            <div class="skill-bar-label"><span>LLM API Integration</span><span>75%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="75"></div></div>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag green">FAISS</span>
+            <span class="tag green">LangChain</span>
+            <span class="tag">Groq / OpenAI</span>
+          </div>
+        </div>
+
+        <!-- MLOps -->
+        <div class="skill-cat">
+          <div class="skill-cat-header">
+            <span class="skill-cat-icon">🚀</span>
+            <span class="skill-cat-name">MLOps &amp; Deployment</span>
           </div>
           <div class="skill-bar-wrap">
-            <div class="sb-label"><span>GitHub Actions / CI/CD</span><span class="sb-pct">75%</span></div>
-            <div class="sb-track"><div class="sb-fill" data-w="75"></div></div>
+            <div class="skill-bar-label"><span>Docker</span><span>75%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="75"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>AWS (EC2 / S3)</span><span>65%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="65"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>GitHub Actions / CI</span><span>72%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="72"></div></div>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag amber">MLflow</span>
+            <span class="tag amber">DVC</span>
+            <span class="tag">Weights &amp; Biases</span>
+          </div>
+        </div>
+
+        <!-- Data Engineering -->
+        <div class="skill-cat">
+          <div class="skill-cat-header">
+            <span class="skill-cat-icon">📊</span>
+            <span class="skill-cat-name">Data &amp; Visualization</span>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Pandas / NumPy</span><span>90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="90"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Plotly / Matplotlib</span><span>88%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="88"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>SQL</span><span>70%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="70"></div></div>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag">Interactive Dashboards</span>
+            <span class="tag">EDA</span>
+            <span class="tag cyan">Feature Engineering</span>
           </div>
         </div>
 
         <!-- Tools -->
-        <div class="skill-cat fade-up">
+        <div class="skill-cat">
           <div class="skill-cat-header">
-            <span class="skill-cat-icon">◻</span>
-            <span class="skill-cat-name">Tools &amp; Standards</span>
+            <span class="skill-cat-icon">🛠</span>
+            <span class="skill-cat-name">Tools &amp; Workflow</span>
           </div>
-          <div class="skill-tags">
-            <span class="stag">Power BI</span>
-            <span class="stag">HL7 &amp; FHIR</span>
-            <span class="stag">DICOM</span>
-            <span class="stag">NIfTI</span>
-            <span class="stag">Plotly</span>
-            <span class="stag">Jupyter</span>
-            <span class="stag">VS Code</span>
-            <span class="stag">RAG</span>
-            <span class="stag">Transformers</span>
-            <span class="stag">Fairness ML</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Git / GitHub</span><span>88%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="88"></div></div>
           </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Linux / Bash</span><span>75%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="75"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-label"><span>Jupyter / VS Code</span><span>90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-w="90"></div></div>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag">OpenCV</span>
+            <span class="tag">DICOM / NIfTI</span>
+            <span class="tag violet">Pydicom</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="exec-summary fade-up">
+        <div class="exec-header">
+          <span class="exec-prompt">›</span>
+          <span>skills.matrix loaded — 6 categories, 18 skills</span>
+          <span class="exec-time">8ms</span>
+        </div>
+        <div class="exec-pills">
+          <span class="epill cyan">Python 92%</span>
+          <span class="epill">PyTorch · Scikit-learn · TensorFlow</span>
+          <span class="epill violet">Generative AI · RAG · Diffusion Models</span>
+          <span class="epill amber">Docker · AWS · MLflow · GitHub Actions</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== EXPERIENCE ===================== -->
-<section id="experience" class="section">
-  <div class="container">
-    <div class="chat-user">
-      <div class="user-bubble">$ query --experience --include education</div>
+<!-- ============================================================
+     EXPERIENCE & EDUCATION
+     ============================================================ -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="sec-title">§ 03 — experience &amp; education</div>
+
+    <div class="user-bubble">
+      <div class="user-bubble-inner">$ show --experience --education --sort=date</div>
     </div>
-    <div class="agent-label">
-      <span class="agent-hex">⬡</span> dishant.ai
-    </div>
+
+    <div class="agent-label">dishant.ai · resume.agent</div>
+
     <div class="agent-bubble fade-up">
-      <div class="tool-block" id="tc-exp">
-        <div class="tool-header">
-          <span class="tool-fn">fn: fetch_timeline(type="experience,education")</span>
-          <span class="tc-badge">⟳ executing</span>
+
+      <!-- Experience -->
+      <div class="sub-header">experience</div>
+      <div class="tl-grid">
+
+        <div class="tl-card">
+          <div class="tl-card-shine"></div>
+          <div class="tl-date">Sep 2025 – Mar 2026</div>
+          <div class="tl-role">Research Intern</div>
+          <div class="tl-org">Fraunhofer Institute for Digital Medicine MEVIS · Bremen</div>
+          <ul class="tl-body">
+            <li>Designed CheXmask lung-cropping pipeline reducing racial encoding bias (AUROC 0.623→0.593) while preserving diagnostic accuracy (0.738 AUROC).</li>
+            <li>Lead author of BVM 2026 paper on preprocessing methods for racial encoding in chest X-ray diagnosis.</li>
+            <li>Ensured compliance with diverse patient demographics through rigorous statistical validation.</li>
+          </ul>
+          <div class="tag-cloud" style="margin-top:12px">
+            <span class="tag cyan">Computer Vision</span>
+            <span class="tag">Fairness AI</span>
+            <span class="tag">Python</span>
+            <span class="tag violet">BVM 2026</span>
+          </div>
         </div>
-        <div class="tool-result">
-          <span class="tr-ok">✓</span> 3 experience roles + 2 education entries returned
+
+        <div class="tl-card">
+          <div class="tl-card-shine"></div>
+          <div class="tl-date">Dec 2024 – Aug 2025</div>
+          <div class="tl-role">Research Student (Master Thesis)</div>
+          <div class="tl-org">Fraunhofer Institute for Digital Medicine MEVIS · Bremen</div>
+          <ul class="tl-body">
+            <li>Built Python statistical toolkit (<em>meval</em>) for ML model fairness evaluation — AUROC, PRG, uncertainty estimation, multiple-comparison corrections.</li>
+            <li>Developed interactive Plotly dashboards saving 8 hours/week of manual bias review.</li>
+            <li>Coordinated MICCAI 2025 submission; versioned experiments in DVC for a reproducible paper package on first submission.</li>
+          </ul>
+          <div class="tag-cloud" style="margin-top:12px">
+            <span class="tag cyan">Statistical Analysis</span>
+            <span class="tag">Plotly</span>
+            <span class="tag">DVC</span>
+            <span class="tag violet">MICCAI 2025</span>
+          </div>
         </div>
+
+        <div class="tl-card">
+          <div class="tl-card-shine"></div>
+          <div class="tl-date">Aug 2021 – Jul 2022</div>
+          <div class="tl-role">Machine Learning Intern</div>
+          <div class="tl-org">Maruti Techlabs · Ahmedabad, India</div>
+          <ul class="tl-body">
+            <li>Resolved class imbalance in a 50,000+ record vehicle insurance dataset using SMOTE — F1+10%, false negatives −8%.</li>
+            <li>Comparative analysis (Logistic Regression, Random Forest, XGBoost) — XGBoost selected at 92% accuracy.</li>
+            <li>Boosted overall accuracy by 6% through systematic hyperparameter tuning and 10-fold cross-validation.</li>
+          </ul>
+          <div class="tag-cloud" style="margin-top:12px">
+            <span class="tag">XGBoost</span>
+            <span class="tag amber">SMOTE</span>
+            <span class="tag">Insurance</span>
+            <span class="tag">EDA</span>
+          </div>
+        </div>
+
       </div>
 
-      <h2 class="section-title">Experience &amp; <span class="accent">Education</span></h2>
+      <!-- Education -->
+      <div class="sub-header">education</div>
+      <div class="tl-grid">
 
-      <div class="timeline">
-        <!-- Experience entries -->
-        <div class="tl-entry tl-fade">
-          <div class="tl-dot"></div>
-          <div class="tl-card tilt-card">
-            <div class="card-shine"></div>
-            <div class="tl-meta">
-              <span class="tl-date">Oct 2025 – Mar 2026</span>
-              <span class="tl-badge tl-badge--cyan">Research</span>
-            </div>
-            <h3 class="tl-title">Researcher</h3>
-            <div class="tl-org">Fraunhofer MEVIS — Bremen, Germany</div>
-            <ul class="tl-bullets">
-              <li>Implemented CheXmask lung-cropping pipeline; AUROC <span class="hl">0.623 → 0.593</span> (racial encoding), diagnostic AUC <span class="hl">0.738–0.84</span></li>
-              <li>CLAHE normalization + Isotonic Regression calibration achieving <span class="hl">0.84 AUC</span> on chest disease classification</li>
-              <li>Lead author — <span class="hl">BVM 2026</span> paper on preprocessing methods for racial encoding in CXR diagnosis</li>
-            </ul>
-            <div class="tl-tech">
-              <span class="tech-chip">Python</span><span class="tech-chip">PyTorch</span><span class="tech-chip">CLAHE</span><span class="tech-chip">Fairness ML</span><span class="tech-chip">CNN</span>
-            </div>
+        <div class="tl-card">
+          <div class="tl-card-shine"></div>
+          <div class="tl-date">Oct 2022 – Aug 2025</div>
+          <div class="tl-role">M.Sc. Medical Engineering</div>
+          <div class="tl-org">Friedrich-Alexander-Universität Erlangen-Nürnberg</div>
+          <ul class="tl-body">
+            <li>Specialisation: Medical Image and Data Processing</li>
+            <li>Thesis on fairness evaluation in deep learning models for medical imaging</li>
+          </ul>
+          <div class="tag-cloud" style="margin-top:12px">
+            <span class="tag cyan">FAU</span>
+            <span class="tag">Erlangen, Germany</span>
           </div>
         </div>
 
-        <div class="tl-entry tl-fade">
-          <div class="tl-dot"></div>
-          <div class="tl-card tilt-card">
-            <div class="card-shine"></div>
-            <div class="tl-meta">
-              <span class="tl-date">Dec 2024 – Sep 2025</span>
-              <span class="tl-badge tl-badge--cyan">Research</span>
-            </div>
-            <h3 class="tl-title">Working Student — Research</h3>
-            <div class="tl-org">Fraunhofer MEVIS — Bremen, Germany</div>
-            <ul class="tl-bullets">
-              <li>Engineered <span class="hl">meval</span> Python library (Plotly) for statistical model evaluation; reduced manual bias review by <span class="hl">20% (~8 h/week)</span></li>
-              <li>Co-authored <span class="hl">MICCAI 2025</span> paper — first-submission acceptance + Best Poster Award</li>
-              <li>Versioned experiments with DVC; coordinated cross-author submission timeline</li>
-            </ul>
-            <div class="tl-tech">
-              <span class="tech-chip">Python</span><span class="tech-chip">Plotly</span><span class="tech-chip">Statistical Analysis</span><span class="tech-chip">DVC</span><span class="tech-chip">Segmentation</span>
-            </div>
+        <div class="tl-card">
+          <div class="tl-card-shine"></div>
+          <div class="tl-date">Jul 2017 – Jun 2021</div>
+          <div class="tl-role">B.Eng. Computer Engineering</div>
+          <div class="tl-org">Gujarat Technological University · India</div>
+          <ul class="tl-body">
+            <li>Foundation in algorithms, software engineering, and data structures</li>
+          </ul>
+          <div class="tag-cloud" style="margin-top:12px">
+            <span class="tag">GTU</span>
+            <span class="tag amber">India</span>
           </div>
         </div>
 
-        <div class="tl-entry tl-fade">
-          <div class="tl-dot"></div>
-          <div class="tl-card tilt-card">
-            <div class="card-shine"></div>
-            <div class="tl-meta">
-              <span class="tl-date">Aug 2021 – Jul 2022</span>
-              <span class="tl-badge tl-badge--violet">Industry</span>
-            </div>
-            <h3 class="tl-title">Machine Learning Intern</h3>
-            <div class="tl-org">Maruti Techlabs — Gujarat, India</div>
-            <ul class="tl-bullets">
-              <li>Vehicle insurance prediction on 50k records — <span class="hl">92% accuracy</span> (+12% over baseline)</li>
-              <li>SMOTE for class imbalance: F1 <span class="hl">+10%</span>, false negatives <span class="hl">-8%</span></li>
-              <li>XGBoost vs RF benchmark with 10-fold CV; systematic hyperparameter tuning (+6% accuracy)</li>
-            </ul>
-            <div class="tl-tech">
-              <span class="tech-chip">Python</span><span class="tech-chip">XGBoost</span><span class="tech-chip">Scikit-learn</span><span class="tech-chip">Pandas</span><span class="tech-chip">SMOTE</span>
-            </div>
-          </div>
+      </div>
+
+      <!-- Achievements -->
+      <div class="sub-header">achievements</div>
+      <div class="tl-grid">
+
+        <div class="tl-card">
+          <div class="tl-card-shine"></div>
+          <div class="tl-date">Oct 2025</div>
+          <div class="tl-role">🏆 Best Poster Award — FAIMI @ MICCAI 2025</div>
+          <div class="tl-org">Marrakech, Morocco</div>
+          <ul class="tl-body">
+            <li><em>meval</em>: A Statistical Toolbox for Fine-Grained Model Performance Analysis</li>
+            <li>Bias audits with uncertainty estimation and multiple-comparison controls</li>
+          </ul>
         </div>
 
-        <!-- Education -->
-        <div class="tl-entry tl-fade">
-          <div class="tl-dot tl-dot--edu"></div>
-          <div class="tl-card tilt-card">
-            <div class="card-shine"></div>
-            <div class="tl-meta">
-              <span class="tl-date">Oct 2022 – Aug 2025</span>
-              <span class="tl-badge tl-badge--green">Education</span>
-            </div>
-            <h3 class="tl-title">M.Sc. Medical Engineering</h3>
-            <div class="tl-org">FAU Erlangen-Nürnberg — Germany</div>
-            <p class="tl-sub">Specialization: Medical Image &amp; Data Processing · Grade: 2.2</p>
-          </div>
+        <div class="tl-card">
+          <div class="tl-card-shine"></div>
+          <div class="tl-date">Sep 2023</div>
+          <div class="tl-role">🥇 1st Place — Siemens Healthineers D&amp;A Summer Challenge</div>
+          <div class="tl-org">Forchheim, Germany</div>
+          <ul class="tl-body">
+            <li>2-day hackathon: image registration of chest X-rays to a standard lung for lesion monitoring</li>
+            <li>Won through democratic voting among competing teams</li>
+          </ul>
         </div>
 
-        <div class="tl-entry tl-fade">
-          <div class="tl-dot tl-dot--edu"></div>
-          <div class="tl-card tilt-card">
-            <div class="card-shine"></div>
-            <div class="tl-meta">
-              <span class="tl-date">Aug 2017 – Jul 2021</span>
-              <span class="tl-badge tl-badge--green">Education</span>
-            </div>
-            <h3 class="tl-title">B.E. Computer Engineering</h3>
-            <div class="tl-org">Gujarat Technological University — India</div>
-            <p class="tl-sub">Grade: 1.7</p>
-          </div>
+      </div>
+
+      <div class="exec-summary fade-up">
+        <div class="exec-header">
+          <span class="exec-prompt">›</span>
+          <span>resume.agent indexed — 3 roles, 2 degrees, 2 awards</span>
+          <span class="exec-time">15ms</span>
+        </div>
+        <div class="exec-pills">
+          <span class="epill cyan">Fraunhofer MEVIS 2024–2026</span>
+          <span class="epill violet">Master of Science — FAU Erlangen-Nürnberg</span>
+          <span class="epill amber">🏆 Best Poster — MICCAI 2025</span>
+          <span class="epill">🥇 1st Place — Siemens Hackathon 2023</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== PUBLICATIONS ===================== -->
-<section id="publications" class="section">
-  <div class="container">
-    <div class="chat-user">
-      <div class="user-bubble">$ list --publications --format citation</div>
+<!-- ============================================================
+     PUBLICATIONS
+     ============================================================ -->
+<section id="publications">
+  <div class="section-wrap">
+    <div class="sec-title">§ 04 — publications</div>
+
+    <div class="user-bubble">
+      <div class="user-bubble-inner">$ list --papers --include=abstract</div>
     </div>
-    <div class="agent-label">
-      <span class="agent-hex">⬡</span> dishant.ai
-    </div>
+
+    <div class="agent-label">dishant.ai · papers.agent</div>
+
     <div class="agent-bubble fade-up">
-      <div class="tool-block" id="tc-pub">
-        <div class="tool-header">
-          <span class="tool-fn">fn: fetch_publications(author="Sutariya,D", sort="date")</span>
-          <span class="tc-badge">⟳ executing</span>
-        </div>
-        <div class="tool-result">
-          <span class="tr-ok">✓</span> 2 peer-reviewed publications found — MICCAI 2025, BVM 2026
-        </div>
-      </div>
+      <div class="pub-grid">
 
-      <h2 class="section-title">Research <span class="accent">Publications</span></h2>
-
-      <div class="papers-grid">
-        <!-- Paper 1: MICCAI -->
-        <div class="paper-card tilt-card fade-up">
-          <div class="card-shine"></div>
-          <div class="paper-top">
-            <span class="paper-venue miccai">MICCAI 2025</span>
-            <span class="paper-award">🏆 Best Poster</span>
+        <div class="pub-card">
+          <div class="pub-card-shine"></div>
+          <div>
+            <span class="pub-badge cyan">MICCAI 2025</span>
+            <span class="pub-award">🏆 Best Poster</span>
           </div>
-          <h3 class="paper-title">meval: A Statistical Toolbox for Fine-Grained Model Performance Analysis</h3>
-          <p class="paper-authors">Sutariya, D., &amp; Petersen, E. (2026)</p>
-          <p class="paper-venue-full">Fairness of AI in Medical Imaging (FAIMI), LNCS Vol. 15976, Springer, Cham</p>
-          <p class="paper-abstract">
-            A Python-based statistical toolkit providing fine-grained model evaluation with AUROC, Precision-Recall Gain,
-            uncertainty estimation, and multiple-comparison corrections. Interactive Plotly dashboards reduce manual bias
-            review time by ~8 hours/week, enabling systematic fairness audits across demographic subgroups.
+          <div class="pub-title">meval: A Statistical Toolbox for Fine-Grained Model Performance Analysis</div>
+          <div class="pub-authors">Sutariya, D., Petersen, E.</div>
+          <div class="pub-venue">FAIMI Workshop @ MICCAI 2025 · LNCS 15976 · Springer, Cham</div>
+          <p class="pub-abstract">
+            Open-source Python toolkit for comprehensive and statistically rigorous ML model evaluation. Implements AUROC, Precision-Recall Gain (PRG), uncertainty estimation, and multiple-comparison corrections — enabling transparent bias audits across patient subgroups. Interactive Plotly dashboards reduce manual analysis by ~8 hours/week.
           </p>
-          <div class="paper-keywords">
-            <span class="kw-tag">Fairness ML</span>
-            <span class="kw-tag">Statistical Analysis</span>
-            <span class="kw-tag">Model Evaluation</span>
-            <span class="kw-tag">Medical Imaging</span>
-            <span class="kw-tag">Python</span>
+          <div class="tag-cloud">
+            <span class="tag cyan">Fairness AI</span>
+            <span class="tag">Statistical Testing</span>
+            <span class="tag">Open Source</span>
           </div>
-          <a href="https://doi.org/10.1007/978-3-032-05870-6_19" target="_blank" class="paper-doi">
+          <a class="pub-doi" href="https://doi.org/10.1007/978-3-032-05870-6_19" target="_blank" rel="noopener">
             DOI: 10.1007/978-3-032-05870-6_19 ↗
           </a>
-          <div class="paper-areas">
-            <span class="area-tag">Bias Mitigation</span>
-            <span class="area-tag">Statistical ML</span>
-            <span class="area-tag">Healthcare AI</span>
-          </div>
         </div>
 
-        <!-- Paper 2: BVM -->
-        <div class="paper-card tilt-card fade-up">
-          <div class="card-shine"></div>
-          <div class="paper-top">
-            <span class="paper-venue bvm">BVM 2026</span>
+        <div class="pub-card">
+          <div class="pub-card-shine"></div>
+          <div>
+            <span class="pub-badge violet">BVM 2026</span>
           </div>
-          <h3 class="paper-title">Impact of Preprocessing Methods on Racial Encoding and Model Robustness in CXR Diagnosis</h3>
-          <p class="paper-authors">Sutariya, D., Petersen, E. (2026)</p>
-          <p class="paper-venue-full">Informatik aktuell, Springer Vieweg — Bildverarbeitung für die Medizin (BVM 2026)</p>
-          <p class="paper-abstract">
-            Investigates how different preprocessing pipelines (CheXmask lung cropping, CLAHE normalization,
-            histogram matching) affect racial demographic encoding in chest X-ray diagnosis models.
-            Demonstrates AUROC reduction from 0.623 to 0.593 for racial encoding while maintaining
-            diagnostic accuracy at 0.84 AUC through Isotonic Regression calibration.
+          <div class="pub-title">Preprocessing Methods for Racial Encoding in Chest X-Ray Diagnosis</div>
+          <div class="pub-authors">Sutariya, D., et al.</div>
+          <div class="pub-venue">BVM Workshop 2026 · Bildverarbeitung für die Medizin</div>
+          <p class="pub-abstract">
+            Investigates how standard preprocessing steps (lung cropping, histogram normalisation) modulate racial information encoded in chest X-ray images. The CheXmask-based cropping pipeline reduces a classifier's ability to predict patient race (AUROC 0.623→0.593) while preserving diagnostic accuracy (0.738 AUROC), establishing new protocols for equitable CXR diagnosis.
           </p>
-          <div class="paper-keywords">
-            <span class="kw-tag">CXR Diagnosis</span>
-            <span class="kw-tag">CLAHE</span>
-            <span class="kw-tag">Racial Encoding</span>
-            <span class="kw-tag">Preprocessing</span>
-            <span class="kw-tag">Robustness</span>
+          <div class="tag-cloud">
+            <span class="tag violet">Bias Mitigation</span>
+            <span class="tag">CXR</span>
+            <span class="tag">Preprocessing</span>
           </div>
-          <a href="https://doi.org/10.1007/978-3-658-51100-5_29" target="_blank" class="paper-doi">
+          <a class="pub-doi" href="https://doi.org/10.1007/978-3-658-51100-5_29" target="_blank" rel="noopener">
             DOI: 10.1007/978-3-658-51100-5_29 ↗
           </a>
-          <div class="paper-areas">
-            <span class="area-tag">Medical Imaging</span>
-            <span class="area-tag">Fairness AI</span>
-            <span class="area-tag">Robust Preprocessing</span>
-          </div>
         </div>
+
       </div>
 
-      <!-- Research areas -->
-      <div class="research-areas fade-up">
-        <span class="ra-label">Research Areas:</span>
-        <span class="ra-tag">Medical Image Analysis</span>
-        <span class="ra-tag">Fairness &amp; Bias Mitigation</span>
-        <span class="ra-tag">Deep Learning for CXR</span>
-        <span class="ra-tag">Statistical Model Evaluation</span>
-        <span class="ra-tag">Robust Preprocessing</span>
+      <div class="exec-summary fade-up">
+        <div class="exec-header">
+          <span class="exec-prompt">›</span>
+          <span>papers.agent — 2 publications retrieved</span>
+          <span class="exec-time">9ms</span>
+        </div>
+        <div class="exec-pills">
+          <span class="epill cyan">MICCAI 2025 · Springer LNCS 15976</span>
+          <span class="epill amber">🏆 Best Poster Award</span>
+          <span class="epill violet">BVM 2026 · Lead Author</span>
+          <span class="epill">Fairness AI · Bias Mitigation · Statistical Testing</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== PROJECTS ===================== -->
-<section id="projects" class="section">
-  <div class="container">
-    <div class="chat-user">
-      <div class="user-bubble">$ show --projects --sort featured</div>
+<!-- ============================================================
+     PROJECTS
+     ============================================================ -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="sec-title">§ 05 — projects</div>
+
+    <div class="user-bubble">
+      <div class="user-bubble-inner">$ show --projects --sort=impact</div>
     </div>
-    <div class="agent-label">
-      <span class="agent-hex">⬡</span> dishant.ai
-    </div>
+
+    <div class="agent-label">dishant.ai · projects.agent</div>
+
     <div class="agent-bubble fade-up">
-      <div class="tool-block" id="tc-proj">
-        <div class="tool-header">
-          <span class="tool-fn">fn: index_repos(user="dishant24", filter="featured")</span>
-          <span class="tc-badge">⟳ executing</span>
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <div class="proj-card-shine"></div>
+          <div class="proj-header">
+            <div class="proj-title">meval — ML Evaluation Toolkit</div>
+            <a href="https://github.com/dishant24" class="proj-gh" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+          <p class="proj-desc">Open-source Python library for fine-grained, statistically rigorous model performance analysis. AUROC, PRG, uncertainty estimation, multiple-comparison corrections, and interactive Plotly dashboards. Published at MICCAI 2025.</p>
+          <div class="tag-cloud">
+            <span class="tag cyan">Python</span>
+            <span class="tag">Plotly</span>
+            <span class="tag">Statistical Analysis</span>
+            <span class="tag violet">MICCAI</span>
+          </div>
         </div>
-        <div class="tool-result">
-          <span class="tr-ok">✓</span> 4 featured repos indexed from github.com/dishant24
+
+        <div class="proj-card">
+          <div class="proj-card-shine"></div>
+          <div class="proj-header">
+            <div class="proj-title">Simple RAG Q&amp;A Application</div>
+            <a href="https://github.com/dishant24/Simple_RAG_Application" class="proj-gh" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+          <p class="proj-desc">RAG application allowing users to upload PDF, TXT, CSV, Excel, Word, and JSON files. Creates searchable embeddings via FAISS vector store and answers questions using Groq's LLM based on the most relevant document context.</p>
+          <div class="tag-cloud">
+            <span class="tag green">RAG</span>
+            <span class="tag">FAISS</span>
+            <span class="tag">Groq LLM</span>
+            <span class="tag cyan">LangChain</span>
+          </div>
         </div>
+
+        <div class="proj-card">
+          <div class="proj-card-shine"></div>
+          <div class="proj-header">
+            <div class="proj-title">PCCT Image Generation (ViT + Diffusion)</div>
+            <a href="https://github.com/dishant24/pcct_project" class="proj-gh" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+          <p class="proj-desc">ViT-conditioned diffusion model in PyTorch to synthesise multi-energy PCCT images from 50 keV input. Multi-objective loss (MSE + SSIM + perceptual) achieves Dice score 0.86, preserving structural detail and material discrimination.</p>
+          <div class="tag-cloud">
+            <span class="tag violet">Diffusion Models</span>
+            <span class="tag">ViT</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">PCCT</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-card-shine"></div>
+          <div class="proj-header">
+            <div class="proj-title">Fair CXR Diagnostic AI</div>
+            <a href="https://github.com/dishant24/cxr-fair-ai" class="proj-gh" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+          <p class="proj-desc">Deep learning system that mitigates racial demographic bias in chest X-ray diagnostic models. Implements preprocessing pipelines and bias metrics to produce equitable predictions across patient demographics.</p>
+          <div class="tag-cloud">
+            <span class="tag cyan">Fairness AI</span>
+            <span class="tag">CXR</span>
+            <span class="tag violet">Bias Mitigation</span>
+            <span class="tag">Deep Learning</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-card-shine"></div>
+          <div class="proj-header">
+            <div class="proj-title">Wine Quality Prediction (End-to-End)</div>
+            <a href="https://github.com/dishant24/End-to-End-Wine-Quality-Prediction" class="proj-gh" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+          <p class="proj-desc">End-to-end ML pipeline for wine quality prediction — data preprocessing, model training, and inference service. Containerised with Docker and hosted on AWS EC2. Demonstrates full MLOps lifecycle from experiment to production.</p>
+          <div class="tag-cloud">
+            <span class="tag amber">Docker</span>
+            <span class="tag">AWS EC2</span>
+            <span class="tag">MLOps</span>
+            <span class="tag">Flask</span>
+          </div>
+        </div>
+
       </div>
 
-      <h2 class="section-title">Featured <span class="accent">Projects</span></h2>
-
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <div class="proj-card tilt-card fade-up">
-          <div class="card-shine"></div>
-          <div class="proj-top">
-            <span class="proj-icon">⚕</span>
-            <span class="proj-badge fair">Fairness ML</span>
-          </div>
-          <h3 class="proj-title">Fair Chest X-ray Diagnostic AI</h3>
-          <p class="proj-desc">
-            CheXmask pipeline for bias-aware CXR diagnosis. Reduces racial encoding (AUROC 0.623→0.593)
-            while preserving diagnostic accuracy. Incorporates CLAHE normalization and fairness constraints.
-          </p>
-          <div class="proj-tech">
-            <span class="tech-chip">PyTorch</span><span class="tech-chip">CNN</span>
-            <span class="tech-chip">CLAHE</span><span class="tech-chip">Fairness ML</span>
-            <span class="tech-chip">OpenCV</span>
-          </div>
-          <a href="https://github.com/dishant24/cxr-fair-ai" target="_blank" class="proj-link">→ View on GitHub</a>
+      <div class="exec-summary fade-up">
+        <div class="exec-header">
+          <span class="exec-prompt">›</span>
+          <span>projects.agent — 5 projects indexed</span>
+          <span class="exec-time">11ms</span>
         </div>
-
-        <!-- Project 2 -->
-        <div class="proj-card tilt-card fade-up">
-          <div class="card-shine"></div>
-          <div class="proj-top">
-            <span class="proj-icon">◈</span>
-            <span class="proj-badge rag">RAG / LLM</span>
-          </div>
-          <h3 class="proj-title">Simple RAG Q&amp;A Application</h3>
-          <p class="proj-desc">
-            Multi-format document Q&amp;A using FAISS vector store and Groq LLM. Supports PDF, TXT,
-            CSV, Excel, Word, JSON. Built with LangChain and Streamlit for interactive querying.
-          </p>
-          <div class="proj-tech">
-            <span class="tech-chip">LangChain</span><span class="tech-chip">FAISS</span>
-            <span class="tech-chip">Groq LLM</span><span class="tech-chip">Streamlit</span>
-            <span class="tech-chip">Python</span>
-          </div>
-          <a href="https://github.com/dishant24/Simple_RAG_Application" target="_blank" class="proj-link">→ View on GitHub</a>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="proj-card tilt-card fade-up">
-          <div class="card-shine"></div>
-          <div class="proj-top">
-            <span class="proj-icon">◉</span>
-            <span class="proj-badge med">Medical AI</span>
-          </div>
-          <h3 class="proj-title">PCCT Energy-Level Image Generation</h3>
-          <p class="proj-desc">
-            ViT-conditioned Diffusion Model generating multi-energy PCCT images from 50 keV input.
-            Dice score 0.86. Multi-objective loss (MSE, SSIM, perceptual) preserving structural detail.
-          </p>
-          <div class="proj-tech">
-            <span class="tech-chip">PyTorch</span><span class="tech-chip">Diffusion</span>
-            <span class="tech-chip">ViT</span><span class="tech-chip">U-Net</span>
-            <span class="tech-chip">SSIM</span>
-          </div>
-          <a href="https://github.com/dishant24/pcct_project" target="_blank" class="proj-link">→ View on GitHub</a>
-        </div>
-
-        <!-- Project 4 -->
-        <div class="proj-card tilt-card fade-up">
-          <div class="card-shine"></div>
-          <div class="proj-top">
-            <span class="proj-icon">⬡</span>
-            <span class="proj-badge ops">MLOps</span>
-          </div>
-          <h3 class="proj-title">Wine Quality Prediction Pipeline</h3>
-          <p class="proj-desc">
-            End-to-end ML pipeline with XGBoost for wine quality prediction. Containerized with Docker,
-            deployed on AWS. Flask inference API with full CI/CD via GitHub Actions.
-          </p>
-          <div class="proj-tech">
-            <span class="tech-chip">XGBoost</span><span class="tech-chip">Docker</span>
-            <span class="tech-chip">AWS</span><span class="tech-chip">Flask</span>
-            <span class="tech-chip">CI/CD</span>
-          </div>
-          <a href="https://github.com/dishant24/End-to-End-Wine-Quality-Prediction" target="_blank" class="proj-link">→ View on GitHub</a>
+        <div class="exec-pills">
+          <span class="epill cyan">meval — MICCAI 2025 Publication</span>
+          <span class="epill green">RAG Application — LLM + FAISS Vector Search</span>
+          <span class="epill violet">Photon-Counting CT — Diffusion Model, Dice 0.86</span>
+          <span class="epill amber">Wine Quality — Docker + AWS Deployed</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="more-projects fade-up">
-        <a href="https://github.com/dishant24" target="_blank" class="more-btn">
-          <span class="icon-github"></span> More projects on GitHub →
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="sec-title">§ 06 — contact</div>
+
+    <div class="user-bubble">
+      <div class="user-bubble-inner">$ contact --agent --method=all</div>
+    </div>
+
+    <div class="agent-label">dishant.ai · contact.agent</div>
+
+    <div class="agent-bubble fade-up">
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <span class="contact-icon">📍</span>
+          <span class="contact-label">Location</span>
+          <span class="contact-val">Bremen, Germany</span>
+        </div>
+
+        <div class="contact-card">
+          <span class="contact-icon">📱</span>
+          <span class="contact-label">Phone</span>
+          <span class="contact-val"><a href="tel:+491624769215">+49 162 4769215</a></span>
+        </div>
+
+        <div class="contact-card">
+          <span class="contact-icon">✉️</span>
+          <span class="contact-label">Email</span>
+          <span class="contact-val"><a href="mailto:dishantsutariya24@gmail.com">dishantsutariya24@gmail.com</a></span>
+        </div>
+
+        <div class="contact-card">
+          <span class="contact-icon">💼</span>
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-val"><a href="https://www.linkedin.com/in/dishant-sutariya/" target="_blank" rel="noopener">dishant-sutariya</a></span>
+        </div>
+
+        <div class="contact-card">
+          <span class="contact-icon">🐙</span>
+          <span class="contact-label">GitHub</span>
+          <span class="contact-val"><a href="https://github.com/dishant24" target="_blank" rel="noopener">dishant24</a></span>
+        </div>
+
+        <div class="contact-card">
+          <span class="contact-icon">📄</span>
+          <span class="contact-label">Resume</span>
+          <span class="contact-val"><a href="https://drive.google.com/file/d/1m0LvMDoTdvY3dT8TsqFYG06IUcpaMCmX/view?usp=sharing" target="_blank" rel="noopener">Download PDF</a></span>
+        </div>
+
+      </div>
+
+      <div style="margin-top:20px;text-align:center">
+        <a href="https://forms.gle/9nWHNKNREm1wcbbC7" class="cv-btn" target="_blank" rel="noopener" style="display:inline-flex">
+          💬 Send a Message
         </a>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ===================== CONTACT ===================== -->
-<section id="contact" class="section">
-  <div class="container">
-    <div class="chat-user">
-      <div class="user-bubble">$ contact --agent --priority high</div>
-    </div>
-    <div class="agent-label">
-      <span class="agent-hex">⬡</span> dishant.ai
-    </div>
-    <div class="agent-bubble fade-up">
-      <div class="tool-block" id="tc-contact">
-        <div class="tool-header">
-          <span class="tool-fn">fn: get_contact_channels(agent="dishant-sutariya")</span>
-          <span class="tc-badge">⟳ executing</span>
+      <div class="exec-summary fade-up">
+        <div class="exec-header">
+          <span class="exec-prompt">›</span>
+          <span>contact.agent — 6 channels online</span>
+          <span class="exec-time">3ms</span>
         </div>
-        <div class="tool-result">
-          <span class="tr-ok">✓</span> Contact channels resolved — 4 endpoints available
-        </div>
-      </div>
-
-      <h2 class="section-title">Get In <span class="accent">Touch</span></h2>
-
-      <div class="contact-grid">
-        <div class="contact-card tilt-card fade-up">
-          <div class="card-shine"></div>
-          <div class="cc-icon">◎</div>
-          <div class="cc-label">Location</div>
-          <div class="cc-val">Bergerstr. 7, 28217<br>Bremen, Germany</div>
-        </div>
-        <div class="contact-card tilt-card fade-up">
-          <div class="card-shine"></div>
-          <div class="cc-icon">✆</div>
-          <div class="cc-label">Phone</div>
-          <div class="cc-val"><a href="tel:+4916247694215">+49 162 476 9215</a></div>
-        </div>
-        <div class="contact-card tilt-card fade-up">
-          <div class="card-shine"></div>
-          <div class="cc-icon">✉</div>
-          <div class="cc-label">Email</div>
-          <div class="cc-val"><a href="mailto:dishantsutariya24@gmail.com">dishantsutariya24@gmail.com</a></div>
-        </div>
-        <div class="contact-card tilt-card fade-up">
-          <div class="card-shine"></div>
-          <div class="cc-icon">↓</div>
-          <div class="cc-label">Resume</div>
-          <div class="cc-val"><a href="https://drive.google.com/file/d/1m0LvMDoTdvY3dT8TsqFYG06IUcpaMCmX/view?usp=sharing" target="_blank">Download CV (PDF)</a></div>
-        </div>
-      </div>
-
-      <div class="contact-socials fade-up">
-        <p class="cs-label">Connect with me</p>
-        <div class="cs-links">
-          <a href="https://linkedin.com/in/dishant-sutariya" target="_blank" class="social-btn social-btn--violet">
-            <span class="icon-linkedin"></span> LinkedIn
-          </a>
-          <a href="https://github.com/dishant24" target="_blank" class="social-btn">
-            <span class="icon-github"></span> GitHub
-          </a>
-          <a href="mailto:dishantsutariya24@gmail.com" class="social-btn social-btn--green">
-            ✉ Email
-          </a>
+        <div class="exec-pills">
+          <span class="epill green">● Response within 24 hours</span>
+          <span class="epill cyan">Open to roles in Germany</span>
+          <span class="epill">Machine Learning Engineer · AI Researcher · Data Scientist</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
-<footer id="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="brand-hex">⬡</span>
-      <span>dishant.ai</span>
-      <span class="footer-sep">—</span>
-      <span class="footer-copy">dishant.ai · all systems nominal</span>
-    </div>
-    <div class="footer-copy-right">
-      &copy; <script>document.write(new Date().getFullYear());</script> Dishantkumar Sutariya · Bremen, Germany
-    </div>
-  </div>
+</main>
+
+<footer>
+  <span class="footer-brand"><span>dishant.ai</span> · all systems nominal</span>
+  <span class="footer-status">online · Bremen, Germany</span>
 </footer>
 
 <script src="js/portfolio.js"></script>
